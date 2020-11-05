@@ -19,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@root')->name('root');  //->middleware('verified')
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]); //['verify' => true]
 
 //Route::get('/home', 'HomeController@index')->name('home');
