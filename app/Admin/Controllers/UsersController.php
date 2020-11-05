@@ -26,7 +26,7 @@ class UsersController extends AdminController
     {
         $grid = new Grid(new User());
 
-        $grid->column('id', __('用户Id'));
+        $grid->column('id', __('用户id'));
         $grid->column('name', __('用户名'));
         $grid->column('email', __('Email'));
         //$grid->column('email_verified_at', __('Email verified at'));
