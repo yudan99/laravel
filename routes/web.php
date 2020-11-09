@@ -21,4 +21,6 @@ Route::get('/', 'PagesController@root')->name('root');  //->middleware('verified
 
 Auth::routes(['verify' => true]); //['verify' => true]
 
+Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update', 'edit']]
+
 //Route::get('/home', 'HomeController@index')->name('home');
