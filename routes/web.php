@@ -24,3 +24,5 @@ Auth::routes(['verify' => true]); //['verify' => true]
 Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update', 'edit']]
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('file_shares', 'FileSharesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
