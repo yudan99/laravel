@@ -6,6 +6,14 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
+//use Faker\Generator as Faker;
+////require_once '/vendor/fakerphp/faker/src/Faker/autoload.php';
+//$faker = Faker\Factory::create('zh_CN');
+//echo $faker->name;
+//echo $faker->address;
+//echo $faker->text;
+//exit();
+
 
 define('LARAVEL_START', microtime(true));
 
