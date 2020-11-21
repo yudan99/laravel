@@ -33,34 +33,38 @@
 
                         <div class="media-list">
                             <div class="row">
-                                <div class="col-sm-12 col" style="padding: 0px 0px 0px 0px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/1.JPG">
+                                <div class="col">
+                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (1).jpg">
                                 </div>
-                                <div class="col-sm-12 col" style="padding: 0px 0px 0px 0px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/2.JPG">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (2).jpg">
                                 </div>
-                                <div class="col-sm-12 col" style="padding: 0px 0px 0px 0px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/3.JPG">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (3).jpg">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="media-list">
-                            <div class="row">
-                                <div class="col-sm-12 col-lg-6" style="padding: 0px 0px 0px 14px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/1.JPG">
-                                </div>
-                                <div class="col-sm-12 col-lg-6" style="padding: 0px 14px 0px 0px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/2.JPG">
-                                </div>
-                                <div class="col-sm-12 col-lg-6" style="padding: 0px 0px 0px 14px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/3.JPG">
-                                </div>
-                                <div class="col-sm-12 col-lg-6" style="padding: 0px 14px 0px 0px">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/9.JPG">
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="media-list">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 0px 0px 14px">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/1.JPG">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 14px 0px 0px">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/2.JPG">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 0px 0px 14px">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/3.JPG">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 14px 0px 0px">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/9.JPG">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
                     </div>
@@ -76,7 +80,9 @@
                                 <button class="btn btn-primary" >购买</button>
                             </div>
                             <div class="col">
-                                <button class="btn btn-primary" >下载</button>
+                                <a href="http://homestead.test/uploads/images/avatars/202011/666.docx" download="888.docx">
+                                    <button class="btn btn-primary" >下载</button>
+                                </a>
                             </div>
                         </div>
                 </div>
