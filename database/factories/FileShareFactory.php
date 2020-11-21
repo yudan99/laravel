@@ -29,7 +29,7 @@ $factory->define(App\Models\FileShare::class, function (Faker $faker) {
     $sub_at = $faker->dateTimeThisMonth();
 
     return [
-        'sh_user_id' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+        'user_id' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
         'sh_time' => $sh_at,
         'sub_time' => $sub_at,
         'file_verify' => '1',

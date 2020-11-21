@@ -16,7 +16,7 @@ class FileSharesController extends Controller
 
 	public function index()
 	{
-		$file_shares = FileShare::paginate();
+		$file_shares = FileShare::with('user')->paginate();
 		return view('file_shares.index', compact('file_shares'));
 	}
 

@@ -65,3 +65,39 @@ body {
         }
     }
 }
+
+/* FileShare Index Page */
+.file_shares-index-page {
+    .file-list {
+        .nav>li>a {
+            position: relative;
+            display: block;
+            padding: 5px 28px;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: gray-dark;
+        }
+
+        .meta {
+            font-size: 0.9em;
+            color: #b3b3b3;
+
+            a {
+                color: #b3b3b3;
+            }
+        }
+
+        .badge {
+            background-color: #d8d8d8;
+        }
+
+        hr {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            border: 0;
+            border-top: 1px solid #dcebf5;
+        }
+    }
+}

@@ -3,13 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFileSharesTable extends Migration 
+class CreateFileSharesTable extends Migration
 {
 	public function up()
 	{
 		Schema::create('file_shares', function(Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('sh_user_id')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->timeStamp('sh_time')->nullable();
             $table->timeStamp('sub_time')->nullable();
             $table->integer('file_verify')->unsigned()->default(0);
