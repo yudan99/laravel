@@ -26,3 +26,4 @@ Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update'
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('file_shares', 'FileSharesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('fiels', 'FielsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);

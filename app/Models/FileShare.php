@@ -10,4 +10,9 @@ class FileShare extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function fiel()
+    {
+        return $this->hasMany(Fiel::class);
+    }
 }
