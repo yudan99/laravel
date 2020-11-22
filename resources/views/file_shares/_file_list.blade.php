@@ -80,7 +80,7 @@
                                 <button class="btn btn-primary" >购买</button>
                             </div>
                             <div class="col">
-                                <a href="http://homestead.test/uploads/images/avatars/202011/666.docx" download="888.docx">
+                                <a href="{{ $file_share->tem_path }}" download="666.docx">
                                     <button class="btn btn-primary" >下载</button>
                                 </a>
                             </div>
