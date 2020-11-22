@@ -33,6 +33,7 @@
 
               <div class="form-group">
                   <label for="tem-path-field" class="avatar-label">上传文件</label>
+                  <input type="hidden" name="MAX_FILE_SIZE" value="100000">
                   <input type="file" name="tem_path" class="form-control-file">
 {{--                  @if($user->avatar)--}}
 {{--                      <br>--}}

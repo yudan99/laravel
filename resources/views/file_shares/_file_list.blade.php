@@ -17,7 +17,7 @@
 
                 <div class="card-body">
                     <div class="media-heading">
-                        <p class="text-left text-justify">{{ $file_share->file_introduction }}</p>
+                        <p class="text-left text-justify">{{ $file_share->st_path }}</p>
                     </div>
                     <div class="media-heading-right">
                         <p class="badge badge-pill badge-info">{{ $file_share->tags }}</p>
@@ -26,27 +26,27 @@
                     </div>
                     <div class="media-body">
                         <div class="media-list">
-                            <video class="glyphicon-hd-video" width=100% height=auto poster="http://homestead.test/uploads/images/avatars/202011/5.JPG" controls>
-                                <source src="http://homestead.test/uploads/images/avatars/202011/480P.mp4"  type="video/mp4">
-                            </video>
+{{--                            <video class="glyphicon-hd-video" width=100% height=auto poster="http://homestead.test/uploads/images/avatars/202011/5.JPG" controls>--}}
+{{--                                <source src="http://homestead.test/uploads/images/avatars/202011/480P.mp4"  type="video/mp4">--}}
+{{--                            </video>--}}
                         </div>
 
                         <div class="media-list">
-                            <div class="row">
-                                <div class="col">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (1).jpg">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (2).jpg">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (3).jpg">
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="col">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (1).jpg">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (2).jpg">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col">--}}
+{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (3).jpg">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
 
 {{--                        <div class="media-list">--}}
@@ -80,7 +80,7 @@
                                 <button class="btn btn-primary" >购买</button>
                             </div>
                             <div class="col">
-                                <a href="{{ $file_share->tem_path }}" download="666.docx">
+                                <a href="{{ $file_share->tem_path }}" download="{{ $file_share->st_path }}">
                                     <button class="btn btn-primary" >下载</button>
                                 </a>
                             </div>

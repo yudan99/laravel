@@ -35,12 +35,26 @@ class FileSharesController extends Controller
 	    return view('file_shares.create_and_edit', compact('file_share','fiel'));
 	}
 
-	public function store(FileShareRequest $request, Fiel $fiel)
+	public function store(FileShareRequest $request, FileUploadHandler $uploader, FileShare $file_share)
 	{
-		$fiel->fill($request->all());
-		$fiel->user_id = Auth::id();
-		$fiel->save();
-	    //$file_share = FileShare::create($request->all());
+        $st_path = $_FILES['tem_path']['name'];
+
+	    $data= $request->all();
+
+		$data['user_id'] = Auth::id();
+        $data['file_introduction'] = "test";
+        $data['st_path'] = $st_path;
+        $data['file_type'] = strtolower($request->tem_path->getClientOriginalExtension());
+
+        if ($request->tem_path){
+            $result = $uploader->save($request->tem_path,'tem_path', Auth::id());
+            //dd($result);
+            if ($result){
+                $data['tem_path'] = $result['tem_path'];
+            }
+        }
+        
+	    $file_share = FileShare::create($data);
 		return redirect()->route('file_shares.show', $file_share->id)->with('message', 'Created successfully.');
 	}
 
@@ -50,11 +64,16 @@ class FileSharesController extends Controller
 		return view('file_shares.create_and_edit', compact('file_share'));
 	}
 
-	public function update(FileShareRequest $request, FileUploadHandler $uploader, FileShare $file_share, User $user)
+	public function update(FileShareRequest $request, FileUploadHandler $uploader, FileShare $file_share)
 	{
-        //dd($request->tem_path);
+        //$ccc = json_encode($_FILES);
+
+        $st_path = $_FILES['tem_path']['name'];
 
         $data = $request->all();
+
+        $data['st_path'] = $st_path;
+        $data['file_type'] = strtolower($request->tem_path->getClientOriginalExtension());
 
         if ($request->tem_path){
             $result = $uploader->save($request->tem_path,'tem_path', Auth::id());
