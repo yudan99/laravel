@@ -20,7 +20,7 @@ class FileShare extends Model
         if(!is_array($fiel_ids)){
             $fiel_ids = compact('fiel_ids');
         }
-        $this->fiel()->sync($fiel_ids, flase);
+        $this->fiel()->sync($fiel_ids, false);
     }
 
     public function unfiel($fiel_ids){
