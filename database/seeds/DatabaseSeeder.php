@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
 		$this->call(FielsTableSeeder::class);
         $this->call(FileSharesTableSeeder::class);
+        $this->call(Fiels2filesTableSeeder::class);
+        $this->call(Fiels2usersTableSeeder::class);
         //$this->call(AdminTablesSeeder::class);
 
         Model::reguard();

@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\FileShare;
+use App\Models\User;
 //use App\Models\Fiel;
 use App\Handlers\UniqueRandHandler;
 
-class Fiels2filesTableSeeder extends Seeder
+class Fiels2usersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,11 @@ class Fiels2filesTableSeeder extends Seeder
     public function run()
     {
         //
-        $files = FileShare::all();
+        $users = User::all();
 
-        foreach ($files as $file){
+        foreach ($users as $user){
             $rand_ids = UniqueRandHandler::unique_rand();
-            $file->addFiel($rand_ids);
+            $user->addFiel($rand_ids);
         }
     }
 

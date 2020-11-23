@@ -19,11 +19,13 @@
                     <div class="media-heading">
                         <p class="text-left text-justify">{{ $file_share->st_path }}</p>
                     </div>
+
                     <div class="media-heading-right">
-                        <p class="badge badge-pill badge-info">{{ $file_share->tags }}</p>
-                        <p class="badge badge-pill badge-info">{{ $file_share->tags }}</p>
-                        <p class="badge badge-pill badge-info">{{ $file_share->tags }}</p>
+                        @foreach($file_share->fiel as $fiel)
+                        <p class="badge badge-pill badge-light"> {{ $fiel->name }} </p>
+                        @endforeach
                     </div>
+
                     <div class="media-body">
                         <div class="media-list">
 {{--                            <video class="glyphicon-hd-video" width=100% height=auto poster="http://homestead.test/uploads/images/avatars/202011/5.JPG" controls>--}}

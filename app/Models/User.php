@@ -39,9 +39,36 @@ class User extends Authenticatable //implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * @var mixed
+     */
 
     public function fileShare()
     {
         return $this->hasMany(FileShare::class);
     }
+
+    public function fiel()
+    {
+        return $this->belongsToMany(Fiel::class, 'fiels2users', 'user_id','fiel_id');
+    }
+
+    public function addFiel($fiel_ids){
+        if(!is_array($fiel_ids)){
+            $fiel_ids = compact('fiel_ids');
+        }
+        $this->fiel()->sync($fiel_ids, false);
+    }
+
+    public function unFiel($fiel_ids){
+        if(!is_array($fiel_ids)){
+            $fiel_ids = compact('fiel_ids');
+        }
+        $this->fiel()->detach($fiel_ids);
+    }
+
+    public function isFiel($fiel_id){
+        return $this->fiel()->contains($fiel_id);
+    }
+
 }
