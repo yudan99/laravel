@@ -41,9 +41,10 @@ class Fiel extends Model
         return $this->hasMany(Fiel::class, 'parent_id');
     }
 
+
     public function fileShare()
     {
-        return $this->hasMany(FileShare::class);
+        return $this->belongsToMany(FileShare::class, 'fiels2files', 'fiel_id','file_id');
     }
 
     // 定义一个访问器，获取所有祖先类目的 ID 值

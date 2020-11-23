@@ -53,7 +53,7 @@ class FileSharesController extends Controller
                 $data['tem_path'] = $result['tem_path'];
             }
         }
-        
+
 	    $file_share = FileShare::create($data);
 		return redirect()->route('file_shares.show', $file_share->id)->with('message', 'Created successfully.');
 	}

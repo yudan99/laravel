@@ -8,7 +8,7 @@ class CreateFileSharesTable extends Migration
 	public function up()
 	{
 		Schema::create('file_shares', function(Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->timeStamp('sh_time')->nullable();
             $table->timeStamp('sub_time')->nullable();

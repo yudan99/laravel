@@ -13,6 +13,6 @@ class FileShare extends Model
 
     public function fiel()
     {
-        return $this->hasMany(Fiel::class);
+        return $this->belongsToMany(Fiel::class, 'fiels2files', 'file_id','fiel_id');
     }
 }
