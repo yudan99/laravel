@@ -25,6 +25,9 @@
 
 <!-- JS -->
 <script src="{{ mix('js/app.js') }}"></script>
+<script>
+    $(".content2").html($(".content1").text());
+</script>
 @yield('scripts')
 
 

@@ -26,50 +26,22 @@
                         @endforeach
                     </div>
 
+
+
+
+
                     <div class="media-body">
-                        <div class="media-list">
+{{--                        <div class="content1" hidden="hidden">--}}
+{{--                            {{ $file_share->file_introduction }}--}}
+{{--                        </div>--}}
+
+{{--                        <div class="content2">--}}
+{{--                        </div>--}}
 {{--                            <video class="glyphicon-hd-video" width=100% height=auto poster="http://homestead.test/uploads/images/avatars/202011/5.JPG" controls>--}}
 {{--                                <source src="http://homestead.test/uploads/images/avatars/202011/480P.mp4"  type="video/mp4">--}}
 {{--                            </video>--}}
-                        </div>
-
-                        <div class="media-list">
-{{--                            <div class="row">--}}
-{{--                                <div class="col">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (1).jpg">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (2).jpg">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/sese (3).jpg">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                        </div>
-
-{{--                        <div class="media-list">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 0px 0px 14px">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/1.JPG">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 14px 0px 0px">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/2.JPG">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 0px 0px 14px">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/3.JPG">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-12 col-lg-6" style="padding: 0px 14px 0px 0px">--}}
-{{--                                    <img class="img-fluid media-object" width=100% height=auto src="http://homestead.test/uploads/images/avatars/202011/9.JPG">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-
                     </div>
+
                 </div>
 
                 <div class="card-footer">
