@@ -15,4 +15,19 @@ class FileShare extends Model
     {
         return $this->belongsToMany(Fiel::class, 'fiels2files', 'file_id','fiel_id');
     }
+
+    public function addfiel($fiel_ids){
+        if(!is_array($fiel_ids)){
+            $fiel_ids = compact('fiel_ids');
+        }
+        $this->fiel()->sync($fiel_ids, flase);
+    }
+
+    public function unfiel($fiel_ids){
+        if(!is_array($fiel_ids)){
+            $fiel_ids = compact('fiel_ids');
+        }
+        $this->fiel()->detach($fiel_ids);
+    }
+
 }
