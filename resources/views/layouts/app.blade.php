@@ -8,8 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', '') 欢迎来到凑学</title>
-    <!-- 样式 -->
+    <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
+
+
 </head>
 <body>
 <div id="app" class="{{ route_class() }}-page">
@@ -19,7 +22,12 @@
     </div>
     @include('layouts._footer')
 </div>
-<!-- JS 脚本 -->
+
+<!-- JS -->
 <script src="{{ mix('js/app.js') }}"></script>
+@yield('scripts')
+
+
+
 </body>
 </html>

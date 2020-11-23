@@ -42,7 +42,7 @@ class FileSharesController extends Controller
 	    $data= $request->all();
 
 		$data['user_id'] = Auth::id();
-        $data['file_introduction'] = "test";
+        //$data['file_introduction'] = "test";
         $data['st_path'] = $st_path;
         $data['file_type'] = strtolower($request->tem_path->getClientOriginalExtension());
 

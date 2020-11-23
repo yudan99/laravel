@@ -41,45 +41,15 @@
 {{--                  @endif--}}
               </div>
 
-{{--              <div class="form-group">--}}
-{{--                  <select class="form-control" name="category_id" required>--}}
-{{--                      <option value="" hidden disabled selected>归属领域</option>--}}
-{{--                      @foreach ($fiel as $value)--}}
-{{--                          <option value="{{ $value->id }}">{{ $value->name }}</option>--}}
-{{--                      @endforeach--}}
-{{--                  </select>--}}
-{{--              </div>--}}
 
-{{--              <div class="form-group">--}}
-{{--                  <select class="form-control" name="category_id" required>--}}
-{{--                      <option value="" hidden disabled selected>个性标签</option>--}}
-{{--                      @foreach ($fiel as $value)--}}
-{{--                          <option value="{{ $value->id }}">{{ $value->name }}</option>--}}
-{{--                      @endforeach--}}
-{{--                  </select>--}}
-{{--              </div>--}}
-
-{{--              <div class="form-group">--}}
-{{--                  <label for="introduction-field">文件介绍</label>--}}
-{{--                  <textarea name="introduction" id="introduction-field" class="form-control" rows="3"></textarea>--}}
-{{--              </div>--}}
-
-{{--              <div class="form-group">--}}
-{{--                  <select class="form-control" name="category_id" required>--}}
-{{--                      <option value="" hidden disabled selected>定价策略</option>--}}
-{{--                      @foreach ($fiel as $value)--}}
-{{--                          <option value="{{ $value->id }}">{{ $value->name }}</option>--}}
-{{--                      @endforeach--}}
-{{--                  </select>--}}
-{{--              </div>--}}
-
-{{--                <div class="form-group">--}}
-{{--                    <label for="sh_user_id-field">Sh_user_id</label>--}}
-{{--                    <input class="form-control" type="text" name="sh_user_id" id="sh_user_id-field" value="{{ old('sh_user_id', $file_share->sh_user_id ) }}" />--}}
-{{--                </div>--}}
+              <div class="form-group"  contenteditable="true" >
+                  <div  contenteditable="true"  name="file_introduction" class="form-control" id="editor" style="height: 500px;overflow:auto" placeholder="请填入至少三个字的内容" required>
+                      {{ old('file_introduction', $file_share->file_introduction ) }}
+                  </div>
+              </div>
 
           <div class="well well-sm">
-            <button type="submit" class="btn btn-primary">确认</button>
+            <button type="submit" class="btn btn-primary"><i class="far fa-save mr-2" aria-hidden="true"></i>确认</button>
             <a class="btn btn-link float-xs-right" href="{{ route('file_shares.index') }}">取消</a>
           </div>
         </form>
@@ -89,3 +59,45 @@
 </div>
 
 @endsection
+
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/quill.bubble.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/quill.core.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/quill.snow.css') }}">
+    @stop
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/quill.core.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/quill.js') }}"></script>
+    <script>
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['image'],['video'],['formula'],
+
+            ['clean']                                        // remove formatting button
+
+        ];
+
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+    </script>
+    @stop
