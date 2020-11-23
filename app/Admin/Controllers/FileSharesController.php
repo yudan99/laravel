@@ -128,7 +128,9 @@ class FileSharesController extends AdminController
         $form->number('file_verify', __('File verify'));
         $form->text('file_status', __('File status'));
         $form->text('file_type', __('File type'));
-        $form->text('file_introduction', __('File introduction'));
+
+        $form->quill('file_introduction', __('文件描述'));
+
         $form->text('fiels', __('Fiels'));
         $form->text('tags', __('Tags'));
         $form->text('video_preview', __('Video preview'));

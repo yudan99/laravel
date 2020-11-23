@@ -15,7 +15,7 @@ class CreateFileSharesTable extends Migration
             $table->integer('file_verify')->unsigned()->default(0);
             $table->string('file_status')->default(0)->index();
             $table->string('file_type')->default(0);
-            $table->string('file_introduction')->index();
+            $table->longText('file_introduction');
             $table->string('fiels')->index()->default(0);
             $table->string('tags')->index()->default(0);
             $table->string('video_preview', 3072)->nullable();
