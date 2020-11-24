@@ -31,12 +31,10 @@
 
 
                     <div class="media-body">
-{{--                        <div class="content1" hidden="hidden">--}}
-{{--                            {{ $file_share->file_introduction }}--}}
-{{--                        </div>--}}
 
-{{--                        <div class="content2">--}}
-{{--                        </div>--}}
+                            {!! $file_share->file_introduction !!}
+
+
 {{--                            <video class="glyphicon-hd-video" width=100% height=auto poster="http://homestead.test/uploads/images/avatars/202011/5.JPG" controls>--}}
 {{--                                <source src="http://homestead.test/uploads/images/avatars/202011/480P.mp4"  type="video/mp4">--}}
 {{--                            </video>--}}
