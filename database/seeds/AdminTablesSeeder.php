@@ -78,6 +78,14 @@ class AdminTablesSeeder extends Seeder
                     "icon" => "fa-bars",
                     "uri" => "/fiels",
                     "permission" => NULL
+                ],
+                [
+                    "parent_id" => 0,
+                    "order" => 0,
+                    "title" => "文件分享管理",
+                    "icon" => "fa-clipboard",
+                    "uri" => "/file-shares",
+                    "permission" => NULL
                 ]
             ]
         );
