@@ -143,22 +143,27 @@ class FileSharesController extends AdminController
 //        $form->text('file_status', __('File status'));
 //        $form->text('file_type', __('File type'));
 
-        $form->quill('file_introduction', __('文件详情描述'));
+        $form->quill('file_introduction', __('文件详情描述'))->default('测试666');
 
         //$form->checkbox('on_sale', '上架')->options(['1' => '是', '0'=> '否'])->default('0');
 
 
 
-        //$form->multipleSelect('fiels',__('领域'))->options(Fiel::all()->pluck('name','id'));
 
-        $form->text('tags', __('Tags'));
-        $form->text('video_preview', __('Video preview'));
-        $form->text('pic_preview', __('Pic preview'));
+        $fiels = DB::table('fiels')->where('level','!=',0)->pluck('name','id');
+        $form->checkbox('fiels', '领域')->options($fiels);
+
+        //$form->multipleSelect('fiels',__('领域'))->options(Fiel::all()->pluck('name','id'));
+        //$form->checkbox('fiels', '领域')->options(Fiel::all()->pluck('name','id'));
+
+        $form->text('tags', __('Tags'))->default('测试666');
+        $form->text('video_preview', __('Video preview'))->default('测试666');
+        $form->text('pic_preview', __('Pic preview'))->default('测试666');
 
         //$form->file('tem_path', __('文件上传'));
 
         // 修改文件上传路径和文件名
-        $form->file('tem_path','文件上传')->move('/a_tem_path', '666');
+        $form->file('tem_path','文件上传');
 
         //$form->text('st_path', __('St path'));
 
@@ -184,7 +189,10 @@ class FileSharesController extends AdminController
     public function store()
     {
         $data = \request()->all();
-        $file_share = new FileShare();
+
+        $fiel_ids = $data['fiels'];
+        $fiel_ids = array_filter($fiel_ids);    //过滤空值
+        $data['fiels'] = $fiel_ids;
 
         //增加对文件的判断和处理方式
         if ($_FILES) {
@@ -202,31 +210,14 @@ class FileSharesController extends AdminController
             }
         }
 
+        //创建成功后，回调写入多对多关联表
 
-        FileShare::create($data);
+        $file_share = FileShare::create($data);
+        $file_share->addFiel($fiel_ids);    //写入多对多关联
+
+
         return redirect()->route('file-shares.create');
         //return $this->redirectAfterStore();
     }
 
-
-//    public function store(FileUploadHandler $uploader, FileShare $file_share)
-//    {
-//
-//        $data= \request()->all();
-//
-//        $st_path = $_FILES['tem_path']['name'];
-//        $data['st_path'] = $st_path;
-//        $data['file_type'] = strtolower($request->tem_path->getClientOriginalExtension());
-//
-//        if ($request->tem_path){
-//            $result = $uploader->save($request->tem_path,'tem_path', Auth::id());
-//            //dd($result);
-//            if ($result){
-//                $data['tem_path'] = $result['tem_path'];
-//            }
-//        }
-//
-//        $file_share = FileShare::create($data);
-//        return redirect()->route('file_shares.show', $file_share->id)->with('message', 'Created successfully.');
-//    }
 }
