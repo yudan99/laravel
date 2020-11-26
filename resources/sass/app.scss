@@ -101,3 +101,18 @@ body {
         }
     }
 }
+
+@import "shares_body";
+
+.file_shares-index-page, .file_shares-show-page {
+
+    .card {
+        //padding: 15px;
+
+        h1 {
+            margin: 0.4em auto 0.6em;
+            font-size: 28px;
+            line-height: 38px;
+        }
+    }
+}

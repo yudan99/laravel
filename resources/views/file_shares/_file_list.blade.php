@@ -14,27 +14,21 @@
                     </div>
                 </div>
 
+                <div class="card-body" style="width: 80%">
+                    <div class="media-heading">
+                        <p class="text-left text-justify"><h1>{{ $file_share->st_path }}</h1></p>
+                    </div>
+                </div>
 
                 <div class="card-body">
-                    <div class="media-heading">
-                        <p class="text-left text-justify">{{ $file_share->st_path }}</p>
-                    </div>
-
                     <div class="media-heading-right">
                         @foreach($file_share->fiel as $fiel)
                         <p class="badge badge-pill badge-light"> {{ $fiel->name }} </p>
                         @endforeach
                     </div>
 
-
-
-
-
                     <div class="media-body">
-
                             {!! $file_share->file_introduction !!}
-
-
 {{--                            <video class="glyphicon-hd-video" width=100% height=auto poster="http://homestead.test/uploads/images/avatars/202011/5.JPG" controls>--}}
 {{--                                <source src="http://homestead.test/uploads/images/avatars/202011/480P.mp4"  type="video/mp4">--}}
 {{--                            </video>--}}
@@ -43,20 +37,19 @@
                 </div>
 
                 <div class="card-footer">
-
-                        <div class="row">
-                            <div class="col align-self-start">
-                                <button class="btn btn-secondary" >收藏</button>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-primary" >购买</button>
-                            </div>
-                            <div class="col">
-                                <a href="{{ $file_share->tem_path }}" download="{{ $file_share->st_path }}">
-                                    <button class="btn btn-primary" >下载</button>
-                                </a>
-                            </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-secondary" >收藏</button>
                         </div>
+                        <div class="col">
+                            <button class="btn btn-primary" >购买</button>
+                        </div>
+                        <div class="col">
+                            <a href="{{ $file_share->tem_path }}" download="{{ $file_share->st_path }}">
+                                <button class="btn btn-primary" >下载</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
             </li>

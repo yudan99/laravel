@@ -71,36 +71,6 @@
     <script type="text/javascript" src="{{ asset('js/quill.core.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/quill.js') }}"></script>
     <script>
-        // var toolbarOptions = [
-        //     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        //     ['blockquote', 'code-block'],
-        //
-        //     [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        //     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        //     [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        //     [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-        //     [{ 'direction': 'rtl' }],                         // text direction
-        //
-        //     [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        //     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        //
-        //     [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        //     [{ 'font': [] }],
-        //     [{ 'align': [] }],
-        //
-        //     ['image'],['video'],['formula'],
-        //
-        //     ['clean']                                        // remove formatting button
-        //
-        // ];
-        //
-        // var quill = new Quill('#file_introduction', {
-        //     modules: {
-        //         toolbar: toolbarOptions
-        //     },
-        //     theme: 'snow'
-        // });
-
         var options = {"modules":{"syntax":true,"toolbar":[{"size":[]},{"header":[]},"bold","italic","underline","strike",{"script":"super"},{"script":"sub"},{"color":[]},{"background":[]},"blockquote","code-block",{"list":"ordered"},{"list":"bullet"},{"indent":"-1"},{"indent":"+1"},"direction",{"align":[]},"link","image","video","formula","clean"]},"theme":"snow"}
         var quill = new Quill("#file_introduction", options);
 
@@ -108,6 +78,5 @@
             var content = document.querySelector('#file_introduction').children[0].innerHTML
             $('input[name=file_introduction]').val(content)
         })
-
     </script>
     @stop

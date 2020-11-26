@@ -2,7 +2,11 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Requests\FileShareRequest;
+use App\Models\Fiel;
 use App\Models\FileShare;
+use App\Models\Model;
+use Barryvdh\Debugbar\DataCollector\ModelsCollector;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -10,6 +14,16 @@ use Encore\Admin\Show;
 use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
 use Encore\Admin\Facades\Admin;
+use App\Handlers\FileUploadHandler;
+use Illuminate\Support\Facades\DB;
+
+class Post extends Model
+{
+    public function fiels()
+    {
+        return $this->belongsToMany(Fiel::class);
+    }
+}
 
 class FileSharesController extends AdminController
 {
@@ -114,7 +128,7 @@ class FileSharesController extends AdminController
     }
 
     /**
-     * Make a form builder.
+     * Make a form builder.laravel\vendor\encore\laravel-admin\src\Form.php
      *
      * @return Form
      */
@@ -122,36 +136,97 @@ class FileSharesController extends AdminController
     {
         $form = new Form(new FileShare());
 
-        $form->number('user_id', __('User id'));
-        $form->datetime('sh_time', __('Sh time'))->default(date('Y-m-d H:i:s'));
-        $form->datetime('sub_time', __('Sub time'))->default(date('Y-m-d H:i:s'));
-        $form->number('file_verify', __('File verify'));
-        $form->text('file_status', __('File status'));
-        $form->text('file_type', __('File type'));
+        $form->number('user_id', __('文件归属用户'))->default(1);
+//        $form->datetime('sh_time', __('Sh time'))->default(date('Y-m-d H:i:s'));
+//        $form->datetime('sub_time', __('Sub time'))->default(date('Y-m-d H:i:s'));
+//        $form->number('file_verify', __('File verify'));
+//        $form->text('file_status', __('File status'));
+//        $form->text('file_type', __('File type'));
 
-        $form->quill('file_introduction', __('文件描述'));
+        $form->quill('file_introduction', __('文件详情描述'));
 
-        $form->text('fiels', __('Fiels'));
+        //$form->checkbox('on_sale', '上架')->options(['1' => '是', '0'=> '否'])->default('0');
+
+
+
+        //$form->multipleSelect('fiels',__('领域'))->options(Fiel::all()->pluck('name','id'));
+
         $form->text('tags', __('Tags'));
         $form->text('video_preview', __('Video preview'));
         $form->text('pic_preview', __('Pic preview'));
-        $form->text('tem_path', __('Tem path'));
-        $form->text('st_path', __('St path'));
-        $form->decimal('ini_price', __('Ini price'))->default(0.00);
-        $form->decimal('cur_price', __('Cur price'))->default(0.00);
-        $form->number('read_count', __('Read count'));
-        $form->number('read_times', __('Read times'));
-        $form->number('collect_count', __('Collect count'));
-        $form->number('forward_count', __('Forward count'));
-        $form->number('pay_count', __('Pay count'));
-        $form->number('down_count', __('Down count'));
-        $form->number('down_times', __('Down times'));
-        $form->number('email_count', __('Email count'));
-        $form->number('email_times', __('Email times'));
-        $form->number('order', __('Order'));
-        $form->textarea('excerpt', __('Excerpt'));
-        $form->text('slug', __('Slug'));
+
+        //$form->file('tem_path', __('文件上传'));
+
+        // 修改文件上传路径和文件名
+        $form->file('tem_path','文件上传')->move('/a_tem_path', '666');
+
+        //$form->text('st_path', __('St path'));
+
+        $form->decimal('ini_price', __('起步价'))->default(2.00);
+        $form->decimal('cur_price', __('现价'))->default(2.00);
+
+//        $form->number('read_count', __('Read count'));
+//        $form->number('read_times', __('Read times'));
+//        $form->number('collect_count', __('Collect count'));
+//        $form->number('forward_count', __('Forward count'));
+//        $form->number('pay_count', __('Pay count'));
+//        $form->number('down_count', __('Down count'));
+//        $form->number('down_times', __('Down times'));
+//        $form->number('email_count', __('Email count'));
+//        $form->number('email_times', __('Email times'));
+//        $form->number('order', __('Order'));
+//        $form->textarea('excerpt', __('Excerpt'));
+//        $form->text('slug', __('Slug'));
 
         return $form;
     }
+
+    public function store()
+    {
+        $data = \request()->all();
+        $file_share = new FileShare();
+
+        //增加对文件的判断和处理方式
+        if ($_FILES) {
+            $uploader = new FileUploadHandler();
+            $st_path = $_FILES['tem_path']['name'];
+            $data['st_path'] = $st_path;
+            $data['file_type'] = strtolower(\request()->tem_path->getClientOriginalExtension());
+
+            if (\request()->tem_path) {
+                $result = $uploader->save(\request()->tem_path, 'tem_path', 'admin');
+                //dd($result);
+                if ($result) {
+                    $data['tem_path'] = $result['tem_path'];
+                }
+            }
+        }
+
+
+        FileShare::create($data);
+        return redirect()->route('file-shares.create');
+        //return $this->redirectAfterStore();
+    }
+
+
+//    public function store(FileUploadHandler $uploader, FileShare $file_share)
+//    {
+//
+//        $data= \request()->all();
+//
+//        $st_path = $_FILES['tem_path']['name'];
+//        $data['st_path'] = $st_path;
+//        $data['file_type'] = strtolower($request->tem_path->getClientOriginalExtension());
+//
+//        if ($request->tem_path){
+//            $result = $uploader->save($request->tem_path,'tem_path', Auth::id());
+//            //dd($result);
+//            if ($result){
+//                $data['tem_path'] = $result['tem_path'];
+//            }
+//        }
+//
+//        $file_share = FileShare::create($data);
+//        return redirect()->route('file_shares.show', $file_share->id)->with('message', 'Created successfully.');
+//    }
 }

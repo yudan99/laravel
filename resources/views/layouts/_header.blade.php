@@ -29,7 +29,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('file_shares.create') }}">
-                            <i class="fa fa-plus"></i>
+                            分享
                         </a>
                     </li>
 
