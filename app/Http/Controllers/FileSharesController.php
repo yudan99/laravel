@@ -18,9 +18,9 @@ class FileSharesController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index()
+	public function index(FileShare $fileshares)
 	{
-		$file_shares = FileShare::with('user')->paginate();
+		$file_shares = $fileshares->orderBy('created_at', 'desc')->with('user')->paginate();
 		return view('file_shares.index', compact('file_shares'));
 	}
 

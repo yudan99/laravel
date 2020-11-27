@@ -71,7 +71,11 @@
     <script type="text/javascript" src="{{ asset('js/quill.core.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/quill.js') }}"></script>
     <script>
-        var options = {"modules":{"syntax":true,"toolbar":[{"size":[]},{"header":[]},"bold","italic","underline","strike",{"script":"super"},{"script":"sub"},{"color":[]},{"background":[]},"blockquote","code-block",{"list":"ordered"},{"list":"bullet"},{"indent":"-1"},{"indent":"+1"},"direction",{"align":[]},"link","image","video","formula","clean"]},"theme":"snow"}
+        import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+
+        var options = {"modules":
+                {"syntax":true, "toolbar":[{"size":[]},{"header":[]},"bold","italic","underline","strike",{"script":"super"},{"script":"sub"},{"color":[]},{"background":[]},"blockquote","code-block",{"list":"ordered"},{"list":"bullet"},{"indent":"-1"},{"indent":"+1"},"direction",{"align":[]}, "link","image","video","formula","clean"]}, "theme":"snow"}
+
         var quill = new Quill("#file_introduction", options);
 
         $('button[type="submit"]').click(function() {
