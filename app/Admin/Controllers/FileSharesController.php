@@ -15,6 +15,7 @@ use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
 use Encore\Admin\Facades\Admin;
 use App\Handlers\FileUploadHandler;
+use App\Handlers\Base64ToFileHandler;
 use Illuminate\Support\Facades\DB;
 
 class Post extends Model
@@ -190,9 +191,12 @@ class FileSharesController extends AdminController
     {
         $data = \request()->all();
 
+
+
         $fiel_ids = $data['fiels'];
         $fiel_ids = array_filter($fiel_ids);    //过滤空值
         $data['fiels'] = $fiel_ids;
+        $data['file_introduction'] = Base64ToFileHandler::base64ToFile(\request()['file_introduction']);
 
         //增加对文件的判断和处理方式
         if ($_FILES) {

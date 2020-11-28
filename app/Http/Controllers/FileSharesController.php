@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FileShareRequest;
 use App\Models\Fiel;
 use App\Handlers\FileUploadHandler;
+use App\Handlers\Base64ToFileHandler;
 use Auth;
 
 class FileSharesController extends Controller

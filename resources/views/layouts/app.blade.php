@@ -25,6 +25,7 @@
 
 <!-- JS -->
 <script src="{{ mix('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
 
 @yield('scripts')
 

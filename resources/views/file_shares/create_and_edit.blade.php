@@ -43,11 +43,24 @@
 
 
               <div class="form-group" >
-                  <div id="file_introduction" style="height: 200px">
+                  <div id="file_introduction" style="height: 600px">
                       {!! old('file_introduction', $file_share->file_introduction ) !!}
                   </div>
                   <input type="hidden" name="file_introduction" value="" />
               </div>
+
+              <div lass="form-group"  id="app"></div>
+
+{{--              <template>--}}
+{{--                  <div class="quill-wrap">--}}
+{{--                      <quill-editor--}}
+{{--                          v-model="content"--}}
+{{--                          ref="myQuillEditor"--}}
+{{--                          :options="editorOption"--}}
+{{--                      >--}}
+{{--                      </quill-editor>--}}
+{{--                  </div>--}}
+{{--              </template>--}}
 
           <div class="well well-sm">
             <button type="submit" class="btn btn-primary">确认</button>
@@ -71,7 +84,7 @@
     <script type="text/javascript" src="{{ asset('js/quill.core.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/quill.js') }}"></script>
     <script>
-        import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+        // import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
 
         var options = {"modules":
                 {"syntax":true, "toolbar":[{"size":[]},{"header":[]},"bold","italic","underline","strike",{"script":"super"},{"script":"sub"},{"color":[]},{"background":[]},"blockquote","code-block",{"list":"ordered"},{"list":"bullet"},{"indent":"-1"},{"indent":"+1"},"direction",{"align":[]}, "link","image","video","formula","clean"]}, "theme":"snow"}
@@ -83,4 +96,42 @@
             $('input[name=file_introduction]').val(content)
         })
     </script>
+    <script src="{{ mix('js/app.js') }}"></script>
+
+{{--    <script>--}}
+{{--        import {quillEditor, Quill} from 'vue-quill-editor'--}}
+{{--        import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'--}}
+
+{{--        Quill.register('modules/ImageExtend', ImageExtend)--}}
+{{--        export default {--}}
+{{--            components: {quillEditor},--}}
+{{--            data() {--}}
+{{--                return {--}}
+{{--                    content: '',--}}
+{{--                    // 富文本框参数设置--}}
+{{--                    editorOption: {--}}
+{{--                        modules: {--}}
+{{--                            ImageExtend: {--}}
+{{--                                loading: true,--}}
+{{--                                name: 'img',--}}
+{{--                                action: updateUrl,--}}
+{{--                                response: (res) => {--}}
+{{--                                    return res.info--}}
+{{--                                }--}}
+{{--                            },--}}
+{{--                            toolbar: {--}}
+{{--                                container: container,--}}
+{{--                                handlers: {--}}
+{{--                                    'image': function () {--}}
+{{--                                        QuillWatch.emit(this.quill.id)--}}
+{{--                                    }--}}
+{{--                                }--}}
+{{--                            }--}}
+{{--                        }--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </script>--}}
+
     @stop

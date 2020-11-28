@@ -21,6 +21,21 @@ window.Vue = require('vue');
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+import root from './components/root.vue'; // 引入Hello 组件
+
+import Vue from 'vue'
+//import  from 'vue-quill-editor'
+import {VueQuillEditor, quillEditor, Quill} from 'vue-quill-editor'
+import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+//Vue.use(VueQuillEditor, /* { default global options } */)
+Quill.register('modules/ImageExtend', ImageExtend)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,4 +44,6 @@ window.Vue = require('vue');
 
 const app = new Vue({
     el: '#app',
+    //render: h => h(root)
 });
+

@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+//Route::get('/', function () {
+//    return view('vue');
+//});
 Route::get('/', 'PagesController@root')->name('root');  //->middleware('verified')
 
 Auth::routes(['verify' => true]); //['verify' => true]
