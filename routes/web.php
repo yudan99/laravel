@@ -32,3 +32,4 @@ Route::resource('file_shares', 'FileSharesController', ['only' => ['index', 'sho
 Route::resource('fiels', 'FielsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 
 Route::resource('courses', 'CoursesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('sections', 'SectionsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
