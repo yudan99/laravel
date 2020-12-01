@@ -15,6 +15,12 @@ class CreateChaptersTable extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('edition_id')->unsigned()->index();
+            $table->string('chapter_name');
+            $table->string('chapter_introduce')->nullable();
+            $table->boolean('is_open')->default(0);
+            $table->string('care')->nullable();
+            $table->integer('order')->unsigned()->nullable();
             $table->timestamps();
         });
     }

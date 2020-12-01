@@ -15,6 +15,13 @@ class CreateEditionsTable extends Migration
     {
         Schema::create('editions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('course_id')->unsigned()->index();
+            $table->unsignedDouble('edition_version')->unsigned()->index();
+            $table->string('edition_introduce')->nullable();
+            $table->boolean('is_open')->default(0);
+            $table->boolean('is_newest')->default(0);
+            $table->string('care')->nullable();
+            $table->integer('order')->unsigned()->nullable();
             $table->timestamps();
         });
     }
