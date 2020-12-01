@@ -196,6 +196,7 @@ class FileSharesController extends AdminController
         $fiel_ids = $data['fiels'];
         $fiel_ids = array_filter($fiel_ids);    //过滤空值
         $data['fiels'] = $fiel_ids;
+        //图片转码储存
         $data['file_introduction'] = Base64ToFileHandler::base64ToFile(\request()['file_introduction']);
 
         //增加对文件的判断和处理方式
