@@ -23,7 +23,7 @@ class CreateSectionsTable extends Migration
             $table->integer('clock_count')->unsigned()->default(0);
             $table->integer('comment_count')->unsigned()->default(0);
             $table->integer('problem_count')->unsigned()->default(0);
-            $table->integer('answer_count')->unsigned()->default(0);
+            $table->integer('reply_count')->unsigned()->default(0);
             $table->string('care')->nullable();
             $table->integer('order')->unsigned()->nullable();
             $table->text('excerpt')->nullable();
