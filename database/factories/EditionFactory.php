@@ -13,7 +13,7 @@ $factory->define(\App\Models\Edition::class, function (Faker $faker) {
 
     return [
         'course_id' => $faker->randomElement([1, 2, 3]),
-        'edition_version' => $faker->randomElement([1.0, 1.3, 1.8, 2.0, 2.2, 2.6, 3.0, 3.4]),
+        'edition_version' => $faker->randomElement([1.1, 1.3, 1.8, 2.1, 2.2, 2.6, 3.1, 3.4]),
         'edition_introduce' => $faker->catchPhrase(),
 
         'is_open' => '1',

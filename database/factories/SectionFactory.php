@@ -11,9 +11,9 @@ $factory->define(App\Models\Section::class, function (Faker $faker) {
     return [
         'chapter_id' => $faker->numberBetween(1, 27),
 
-        'section_name' => $faker->numerify('小节测试：#####'),
+        'section_name' => $faker->numerify('这是小节标题#####'),
         'section_introduce' => $faker->catchPhrase(),
-        'section_detail' => $faker->paragraphs(10, true),
+        'section_detail' => '<p>这是一条自动生成的测试内容</p><p><img src="/uploads/images/articles/202012/01/bbef467e314fadcf9a36c1919c1b0ac0.jpg"></p><p>这是一条自动生成的测试内容</p><p><img src="/uploads/images/articles/202012/01/bbef467e314fadcf9a36c1919c1b0ac0.jpg"></p><p>这是一条自动生成的测试内容</p><p><img src="/uploads/images/articles/202012/01/bbef467e314fadcf9a36c1919c1b0ac0.jpg"></p>',
 
         'is_open' => '1',
         'is_charge' => '0',

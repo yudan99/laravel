@@ -13,7 +13,7 @@ $factory->define(\App\Models\Chapter::class, function (Faker $faker) {
 
     return [
         'edition_id' => $faker->numberBetween(1, 9),
-        'chapter_name' => $faker->numerify('章节测试：#####'),
+        'chapter_name' => $faker->numerify('这是章节标题#####'),
         'chapter_introduce' => $faker->catchPhrase(),
 
         'is_open' => '1',

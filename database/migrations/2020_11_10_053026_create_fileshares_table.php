@@ -33,7 +33,7 @@ class CreateFileSharesTable extends Migration
             $table->integer('down_times')->unsigned()->default(0);
             $table->integer('email_count')->unsigned()->default(0);
             $table->integer('email_times')->unsigned()->default(0);
-            $table->integer('order')->unsigned()->default(0);
+            $table->integer('order')->unsigned()->nullable();
             $table->text('excerpt')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();

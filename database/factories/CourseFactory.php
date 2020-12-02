@@ -17,15 +17,15 @@ $factory->define(App\Models\Course::class, function (Faker $faker) use ($covers)
     $created_at = $faker->dateTimeThisYear($updated_at);
 
     return [
-        'course_name' => $faker->numerify('凑学教程测试：#####'),
+        'course_name' => $faker->numerify('这是教程标题#####'),
         'fiels' => '[1,2,3,4,5]',
         'tags' => '[1,2,3,4,5]',
         'cover' => $faker->randomElement($covers),
         'author' => $faker->name,
         'course_introduce' => $faker->catchPhrase(),
 
-        'ini_price' => $faker->randomElement([19.8, 29.8, 39.8, 69.8]),
-        'cur_price' => $faker->randomElement([22.8, 36.8, 55.8, 78.8]),
+        'ini_price' => $faker->randomFloat(2, 19.8, 29.8),
+        'cur_price' => $faker->randomFloat(2, 39.8, 99.8),
 
         'is_open' => '1',
 
