@@ -9,7 +9,7 @@ $factory->define(App\Models\Section::class, function (Faker $faker) {
     $created_at = $faker->dateTimeThisYear($updated_at);
 
     return [
-        'chapter_id' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+        'chapter_id' => $faker->numberBetween(1, 27),
 
         'section_name' => $faker->numerify('小节测试：#####'),
         'section_introduce' => $faker->catchPhrase(),

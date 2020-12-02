@@ -12,7 +12,7 @@ $factory->define(Model::class, function (Faker $faker) {
     $created_at = $faker->dateTimeThisYear($updated_at);
 
     return [
-        'edition_id' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+        'edition_id' => $faker->numberBetween(1, 9),
         'chapter_name' => $faker->numerify('章节测试：#####'),
         'chapter_introduction' => $faker->catchPhrase(),
 

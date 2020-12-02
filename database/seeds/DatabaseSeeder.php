@@ -15,13 +15,16 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(UsersTableSeeder::class);
-		$this->call(SectionsTableSeeder::class);
-		//$this->call(CoursesTableSeeder::class);
+
 		$this->call(FielsTableSeeder::class);
         $this->call(FileSharesTableSeeder::class);
         $this->call(Fiels2filesTableSeeder::class);
         $this->call(Fiels2usersTableSeeder::class);
         //$this->call(AdminTablesSeeder::class);
+
+        $this->call(CoursesTableSeeder::class);
+        $this->call(EditionsTableSeeder::class);
+        $this->call(SectionsTableSeeder::class);
 
         Model::reguard();
     }
