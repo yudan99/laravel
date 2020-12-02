@@ -11,4 +11,14 @@ class Edition extends Model
 
     protected $casts = ['is_open'=>'boolean', 'is_newest'=>'boolean'];
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function chapter()
+    {
+        return $this->hasMany(Chapter::class);
+    }
+
 }

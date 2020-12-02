@@ -42,7 +42,7 @@ class Fiel extends Model
     }
 
 
-    public function fileShare()
+    public function fileshare()
     {
         return $this->belongsToMany(FileShare::class, 'fiels2files', 'fiel_id','file_id');
     }
@@ -51,6 +51,13 @@ class Fiel extends Model
     {
         return $this->belongsToMany(User::class, 'fiels2users', 'fiel_id','user_id');
     }
+
+    public function course()
+    {
+        return $this->belongsToMany(Course::class, 'fiels2courses', 'fiel_id','course_id');
+    }
+
+
 
     // 定义一个访问器，获取所有祖先类目的 ID 值
     public function getPathIdsAttribute()
