@@ -10,8 +10,17 @@
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
             <div class="card ">
                 <div class="card-body">
+                    <div class="media">
+                        <div align="center">
+                            <a href="{{ route('courses.show', $section->chapter->edition->course->id) }}">
+                                <img class="thumbnail img-fluid" src="{{ $section->chapter->edition->course->cover }}" width="300px" height=auto>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
                     <div class="text-left">
                         <h4>{{ $section->chapter->edition->course->course_name }}</h4>
+                        <h6>当前版本：{{ $section->chapter->edition->edition_version }}</h6>
                     </div>
                     <hr>
                     <div class="media">
@@ -37,7 +46,7 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 section-content">
             <div class="card ">
                 <div class="card-body">
                     <h1 class="text-center mt-3 mb-3">
@@ -51,7 +60,7 @@
                         {{ $section->reply_count }}人阅读
                     </div>
 
-                    <div class="topic-body mt-4 mb-4">
+                    <div class="section-body mt-4 mb-4">
                         {!! $section->section_detail !!}
                     </div>
 
