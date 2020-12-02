@@ -3,12 +3,12 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSectionsTable extends Migration 
+class CreateSectionsTable extends Migration
 {
 	public function up()
 	{
 		Schema::create('sections', function(Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->bigInteger('chapter_id')->unsigned()->index();
             $table->string('section_name')->nullable();
             $table->longText('section_introduce')->nullable();
