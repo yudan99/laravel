@@ -31,7 +31,7 @@ $factory->define(App\Models\Section::class, function (Faker $faker) {
         'care' => $faker->catchPhrase(),
         'order' => $faker->randomNumber(6,false),
         'excerpt' => $faker->text(200),
-        'slug' => $faker->$faker->words(10, true),
+        'slug' => $faker->words(10, true),
         'created_at' => $created_at,
         'updated_at' => $updated_at,
 

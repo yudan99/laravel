@@ -5,7 +5,7 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(\App\Models\Chapter::class, function (Faker $faker) {
     // 随机取一年以内的时间
     $updated_at = $faker->dateTimeThisYear();
     // 为创建时间传参，意为最大不超过 $updated_at，因为创建时间需永远比更改时间要早
@@ -14,7 +14,7 @@ $factory->define(Model::class, function (Faker $faker) {
     return [
         'edition_id' => $faker->numberBetween(1, 9),
         'chapter_name' => $faker->numerify('章节测试：#####'),
-        'chapter_introduction' => $faker->catchPhrase(),
+        'chapter_introduce' => $faker->catchPhrase(),
 
         'is_open' => '1',
 

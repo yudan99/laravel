@@ -22,7 +22,7 @@ $factory->define(App\Models\Course::class, function (Faker $faker) use ($covers)
         'tags' => '[1,2,3,4,5]',
         'cover' => $faker->randomElement($covers),
         'author' => $faker->name,
-        'course_introduction' => $faker->catchPhrase(),
+        'course_introduce' => $faker->catchPhrase(),
 
         'ini_price' => $faker->randomElement([19.8, 29.8, 39.8, 69.8]),
         'cur_price' => $faker->randomElement([22.8, 36.8, 55.8, 78.8]),
@@ -42,7 +42,7 @@ $factory->define(App\Models\Course::class, function (Faker $faker) use ($covers)
         'care' => $faker->catchPhrase(),
         'order' => $faker->randomNumber(6,false),
         'excerpt' => $faker->text(200),
-        'slug' => $faker->$faker->words(10, true),
+        'slug' => $faker->words(10, true),
         'created_at' => $created_at,
         'updated_at' => $updated_at,
 
