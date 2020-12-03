@@ -11,10 +11,10 @@ Route::group([
 ], function (Router $router) {
 
     $router->resource('file-shares', FileSharesController::class);
+    $router->resource('courses', CoursesController::class);
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->get('users', 'UsersController@index');
-    $router->get('courses', 'CoursesController@index');
 
     $router->get('fiels', 'FielsController@index');
     $router->get('fiels/create', 'FielsController@create');

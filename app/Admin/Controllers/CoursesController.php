@@ -103,28 +103,44 @@ class CoursesController extends AdminController
     {
         $form = new Form(new Course());
 
-        $form->text('course_name', __('Course name'));
-        $form->text('fiels', __('Fiels'));
-        $form->text('tags', __('Tags'));
-        $form->image('cover', __('Cover'));
-        $form->text('author', __('Author'));
-        $form->textarea('course_introduce', __('Course introduce'));
-        $form->decimal('ini_price', __('Ini price'))->default(0.00);
-        $form->decimal('cur_price', __('Cur price'))->default(0.00);
-        $form->switch('is_open', __('Is open'));
-        $form->number('read_count', __('Read count'));
-        $form->number('read_times', __('Read times'));
-        $form->number('collect_count', __('Collect count'));
-        $form->number('forward_count', __('Forward count'));
-        $form->number('pay_count', __('Pay count'));
-        $form->number('clock_count', __('Clock count'));
-        $form->number('comment_count', __('Comment count'));
-        $form->number('problem_count', __('Problem count'));
-        $form->number('reply_count', __('Reply count'));
-        $form->text('care', __('Care'));
-        $form->number('order', __('Order'));
-        $form->textarea('excerpt', __('Excerpt'));
-        $form->text('slug', __('Slug'));
+        $form->text('course_name', __('教程名'))->rules('required')->default('这是一段教程名');
+        //$form->text('fiels', __('Fiels'));
+        //$form->text('tags', __('Tags'));
+        $form->image('cover', __('教程封面'))->rules('required|image');
+        $form->text('author', __('作者信息'))->default('小黑猪&小粉猪');
+
+
+        $form->textarea('course_introduce', __('教程介绍'))->default('这是一段教程介绍');
+        $form->decimal('ini_price', __('初始价'))->default(19.80);
+        $form->decimal('cur_price', __('现价'))->default(25.80);
+
+        $form->switch('is_open', __('教程是否公开'));
+
+//        $form->number('read_count', __('Read count'));
+//        $form->number('read_times', __('Read times'));
+//        $form->number('collect_count', __('Collect count'));
+//        $form->number('forward_count', __('Forward count'));
+//        $form->number('pay_count', __('Pay count'));
+//        $form->number('clock_count', __('Clock count'));
+//        $form->number('comment_count', __('Comment count'));
+//        $form->number('problem_count', __('Problem count'));
+//        $form->number('reply_count', __('Reply count'));
+
+        $form->text('care', __('补充备注'))->default('这是一段教程备注');
+
+
+        // 直接添加一对多的关联模型
+        $form->hasMany('edition', '教程版本', function (Form\NestedForm $form) {
+            $form->text('edition_version', '版本号')->rules('required')->default('1.22');
+            $form->text('edition_introduce', '版本描述')->rules('required')->default('这是一段版本描述');
+            $form->switch('is_open', '版本是否公开');
+            $form->text('care', '版本备注')->default('这是一段版本备注');
+        });
+
+
+        //$form->number('order', __('Order'));
+        //$form->textarea('excerpt', __('Excerpt'));
+        //$form->text('slug', __('Slug'));
 
         return $form;
     }
