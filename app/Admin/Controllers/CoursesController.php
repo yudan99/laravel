@@ -143,12 +143,12 @@ class CoursesController extends AdminController
 
 
         // 直接添加一对多的关联模型
-        $form->hasMany('edition', '教程版本', function (Form\NestedForm $form) {
-            $form->text('edition_version', '版本号')->rules('required')->default('1.22');
-            $form->text('edition_introduce', '版本描述')->rules('required')->default('这是一段版本描述');
-            $form->radio('is_open', __('版本是否公开'))->options(['1' => '公开', '0'=> '不公开'])->default('0');
-            $form->text('care', '版本备注')->default('这是一段版本备注');
-        });
+//        $form->hasMany('edition', '教程版本', function (Form\NestedForm $form) {
+//            $form->text('edition_version', '版本号')->rules('required')->default('1.22');
+//            $form->text('edition_introduce', '版本描述')->rules('required')->default('这是一段版本描述');
+//            $form->radio('is_open', __('版本是否公开'))->options(['1' => '公开', '0'=> '不公开'])->default('0');
+//            $form->text('care', '版本备注')->default('这是一段版本备注');
+//        });
 
 
         //$form->number('order', __('Order'));
@@ -184,12 +184,9 @@ class CoursesController extends AdminController
         //创建成功后,返回成功对象
         $course = Course::create($data);
 
-        $editions = $data['edition'];
-
-
-
+        //$editions = $data['edition'];
         //dd($editions);
-        $course->addEditions($editions);    //写入关联
+        //$course->addEditions($editions);    //写入关联
 
 //        dd($data);
 //        parent::store();

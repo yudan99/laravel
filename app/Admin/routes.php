@@ -12,6 +12,9 @@ Route::group([
 
     $router->resource('file-shares', FileSharesController::class);
     $router->resource('courses', CoursesController::class);
+    $router->resource('editions', EditionsController::class);
+    $router->resource('chapters', ChaptersController::class);
+    $router->resource('sections', SectionsController::class);
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->get('users', 'UsersController@index');
