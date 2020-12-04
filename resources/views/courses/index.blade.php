@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '文件分享')
+@section('title', '教程列表')
 
 @section('content')
 

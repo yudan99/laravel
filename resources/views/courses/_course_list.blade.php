@@ -9,12 +9,19 @@
                         <img class="rounded align-self-auto mr-3" style="width: 104px; height: 130px;" src="{{ $course->cover }}" >
                         <div class="media-body">
                             <h1><strong>{{ $course->course_name }}</strong></h1>
-                            <h3>{{ $course->course_introduce }}</h3>
                         </div>
                     </div>
                 </div>
 
+
+
                 <div class="card-body" style="width: 80%">
+
+                    <div class="media-body">
+                        <h3>{!! $course->course_introduce !!} </h3>
+                    </div>
+
+                    <hr>
 
                         @foreach($course->edition as $edition)
                         <div class="media-heading">

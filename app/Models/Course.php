@@ -17,4 +17,14 @@ class Course extends Model
     {
         return $this->hasMany(Edition::class);
     }
+
+    public function addEditions($editions){
+        if(!is_array($editions)){
+            $$editions = compact('editions');
+        }
+        // 递归调用
+        foreach ($editions as $column => $value) {
+            $this->edition()->create($value);
+        }
+    }
 }
