@@ -18,8 +18,11 @@ class CourseObserver
     {
         //
     }
-    public function deleted(Course $course)
+    public function deleting(Course $course)
     {
+        //dd($course>id);
+        \DB::table('sections')->where('course_id', $course->id)->delete();
+        \DB::table('chapters')->where('course_id', $course->id)->delete();
         \DB::table('editions')->where('course_id', $course->id)->delete();
     }
 

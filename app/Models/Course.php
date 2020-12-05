@@ -18,6 +18,16 @@ class Course extends Model
         return $this->hasMany(Edition::class);
     }
 
+    public function chapter()
+    {
+        return $this->hasMany(Chapter::class);
+    }
+
+    public function section()
+    {
+        return $this->hasMany(Section::class);
+    }
+
     public function addEditions($editions){
         if(!is_array($editions)){
             $$editions = compact('editions');
@@ -27,4 +37,17 @@ class Course extends Model
             $this->edition()->create($value);
         }
     }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     //在用户删除时，同时执行
+    //     static::deleting(function($course){
+    //         //删除与教程相关的版本
+    //         $course->edition->chapter->section()->delete();
+    //         $course->edition->chapter()->delete();
+    //         $course->edition()->delete();
+    //     });
+    // }
 }

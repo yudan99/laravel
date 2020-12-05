@@ -98,15 +98,26 @@ class SectionsController extends AdminController
     {
         $form = new Form(new Section());
 
-        $chapters = DB::table('chapters')->pluck('chapter_name','id');
+
+        $courses = DB::table('courses')->pluck('care','id');
+        $form->select('course_id', '关联的教程')->options($courses);
+
+        $editions = DB::table('editions')->pluck('care','id');
+        $form->select('edition_id', '隶属教程版本')->options($editions);
+
+        $chapters = DB::table('chapters')->pluck('care','id');
         $form->select('chapter_id', '当前小节隶属的章节')->options($chapters);
 
         //$form->number('chapter_id', __('Chapter id'));
         $form->text('section_name', __('小节名'));
         $form->textarea('section_introduce', __('小节介绍'));
         $form->quill('section_detail', __('小节正文'));
-        $form->switch('is_open', __('是否公开'));
-        $form->switch('is_charge', __('是否付费'))->default(1);
+
+        $form->radio('is_open', __('小节是否公开'))->options(['1' => '公开', '0'=> '不公开'])->default('0');
+        $form->radio('is_charge', __('小节是否收费'))->options(['1' => '公开', '0'=> '不公开'])->default('1');
+
+        // $form->switch('is_open', __('是否公开'));
+        // $form->switch('is_charge', __('是否付费'))->default(1);
 //        $form->number('read_count', __('Read count'));
 //        $form->number('read_times', __('Read times'));
 //        $form->number('collect_count', __('Collect count'));
@@ -133,11 +144,31 @@ class SectionsController extends AdminController
         //富文本图片转码储存
         $data['section_detail'] = base64ToFile(\request()['section_detail']);
 
-        parent::store();
+        //获取教程名
+        $course = DB::table('courses')->where('id' , $data['course_id'])->pluck('course_name');
+        $arr = json_decode($course);
+        $course_name = implode('-',$arr);
+
+        //获取版本号
+        $edition = DB::table('editions')->where('id', $data['edition_id'])->pluck('edition_version');
+        $arr = json_decode($edition);
+        $edition_version = implode('-',$arr);
+
+        //获取章节名
+        $chapter = DB::table('chapters')->where('id', $data['chapter_id'])->pluck('chapter_name');
+        $arr = json_decode($chapter);
+        $chapter_name = implode('-',$arr);
 
 
-//         //创建成功后,返回成功对象
-//         $course = Course::create($data);
+        //内部备注自动处理
+        $data['care'] = '【'.$course_name.'】-【版本号'.$edition_version.'】-【章节：'.$chapter_name.'】-【小节：'.$data['section_name'].'】---内部备注：'.$data['care'];
+
+        //parent::store();
+
+
+        //创建成功后,返回成功对象
+        $section = Section::create($data);
+        return redirect()->route('sections.create');
 
 //         //$editions = $data['edition'];
 //         //dd($editions);

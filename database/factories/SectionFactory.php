@@ -9,6 +9,8 @@ $factory->define(App\Models\Section::class, function (Faker $faker) {
     $created_at = $faker->dateTimeThisYear($updated_at);
 
     return [
+        'course_id' => $faker->randomElement([1, 2, 3]),
+        'edition_id' => $faker->numberBetween(1, 9),
         'chapter_id' => $faker->numberBetween(1, 27),
 
         'section_name' => $faker->numerify('这是小节标题#####'),

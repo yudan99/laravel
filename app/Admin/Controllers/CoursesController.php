@@ -181,6 +181,10 @@ class CoursesController extends AdminController
             }
         }
 
+         //内部备注自动处理
+         $data['care'] = '【'.$data['course_name'].'】---内部备注：'.$data['care'];
+
+
         //创建成功后,返回成功对象
         $course = Course::create($data);
 

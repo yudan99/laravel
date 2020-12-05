@@ -21,4 +21,9 @@ class Edition extends Model
         return $this->hasMany(Chapter::class);
     }
 
+    public function section()
+    {
+        return $this->hasMany(Section::class);
+    }
+
 }

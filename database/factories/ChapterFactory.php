@@ -12,7 +12,9 @@ $factory->define(\App\Models\Chapter::class, function (Faker $faker) {
     $created_at = $faker->dateTimeThisYear($updated_at);
 
     return [
+        'course_id' => $faker->randomElement([1, 2, 3]),
         'edition_id' => $faker->numberBetween(1, 9),
+
         'chapter_name' => $faker->numerify('这是章节标题#####'),
         'chapter_introduce' => $faker->catchPhrase(),
 

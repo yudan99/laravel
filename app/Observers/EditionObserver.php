@@ -7,7 +7,7 @@ use App\Models\Edition;
 class EditionObserver
 {
     //
-    public function deleted(Edition $edition)
+    public function deleting(Edition $edition)
     {
         \DB::table('chapters')->where('edition_id', $edition->id)->delete();
     }

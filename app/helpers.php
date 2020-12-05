@@ -29,3 +29,12 @@ function base64ToFile($content)
 
     return $res;
 }
+
+function unicodeDecode($name){
+
+    $json = '{"str":"'.$name.'"}';
+    $arr = json_decode($json,true);
+    //if(empty($arr)) return '';
+    return $arr['str'];
+
+}
