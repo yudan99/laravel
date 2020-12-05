@@ -14,9 +14,13 @@ class CoursesController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index()
+	public function index(Course $course)
 	{
-		$courses = Course::paginate();
+
+
+        $courses = $course->orderBy('created_at','desc')->with('edition')->paginate();
+
+        //$courses = Course::paginate();
 		return view('courses.index', compact('courses'));
 	}
 
