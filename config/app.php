@@ -164,8 +164,7 @@ return [
         Overtrue\LaravelLang\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        //Jxlwqq\Quill\QuillServiceProvider::class,
-        Jxlwqq\Quill\QuillServiceProvider::class,
+        //Encore\Admin\AdminServiceProvider::class,
 
         /*
          * Package Service Providers...

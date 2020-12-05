@@ -117,7 +117,7 @@ class CoursesController extends AdminController
         $form->text('author', __('作者信息'))->default('小黑猪&小粉猪');
 
 
-        $form->quill('course_introduce', __('教程介绍'))->default('这是一段教程介绍');
+        $form->editor('course_introduce', __('教程介绍'))->default('这是一段教程介绍');
         $form->decimal('ini_price', __('初始价'))->default(19.80);
         $form->decimal('cur_price', __('现价'))->default(25.80);
 
