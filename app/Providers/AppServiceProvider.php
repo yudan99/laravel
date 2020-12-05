@@ -27,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
 		\App\Models\Section::observe(\App\Observers\SectionObserver::class);
 		\App\Models\Course::observe(\App\Observers\CourseObserver::class);
 		\App\Models\Fiel::observe(\App\Observers\FielObserver::class);
-		\App\Models\FileShare::observe(\App\Observers\FileShareObserver::class);
+        \App\Models\FileShare::observe(\App\Observers\FileShareObserver::class);
+        \App\Models\Chapter::observe(\App\Observers\ChapterObserver::class);
+        \App\Models\Edition::observe(\App\Observers\EditionObserver::class);
 
         //
     }

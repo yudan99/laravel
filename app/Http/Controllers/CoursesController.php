@@ -18,9 +18,9 @@ class CoursesController extends Controller
 	{
 
 
-        $courses = $course->orderBy('created_at','desc')->with('edition')->paginate();
+        //$courses = $course->orderBy('created_at','desc')->with('edition')->paginate();
 
-        //$courses = Course::paginate();
+        $courses = Course::paginate();
 		return view('courses.index', compact('courses'));
 	}
 

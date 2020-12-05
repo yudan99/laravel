@@ -90,9 +90,33 @@ class AdminTablesSeeder extends Seeder
                 [
                     "parent_id" => 0,
                     "order" => 0,
-                    "title" => "教程管理",
-                    "icon" => "fa-codepen",
+                    "title" => "教程创建管理",
+                    "icon" => "fa-bars",
                     "uri" => "/courses",
+                    "permission" => NULL
+                ],
+                [
+                    "parent_id" => 0,
+                    "order" => 0,
+                    "title" => "教程版本管理",
+                    "icon" => "fa-bars",
+                    "uri" => "/editions",
+                    "permission" => NULL
+                ],
+                [
+                    "parent_id" => 0,
+                    "order" => 0,
+                    "title" => "教程章节管理",
+                    "icon" => "fa-bars",
+                    "uri" => "/chapters",
+                    "permission" => NULL
+                ],
+                [
+                    "parent_id" => 0,
+                    "order" => 0,
+                    "title" => "教程小节详情",
+                    "icon" => "fa-bars",
+                    "uri" => "/sections",
                     "permission" => NULL
                 ]
             ]

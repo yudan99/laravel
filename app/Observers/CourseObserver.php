@@ -18,4 +18,9 @@ class CourseObserver
     {
         //
     }
+    public function deleted(Course $course)
+    {
+        \DB::table('editions')->where('course_id', $course->id)->delete();
+    }
+
 }
