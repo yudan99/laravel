@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\Extensions\WangEditor;
+use App\Admin\Extensions\CKEditor;
 use Encore\Admin\Form;
 
 /**
@@ -23,3 +24,4 @@ use Encore\Admin\Form;
 
 Encore\Admin\Form::forget(['map']);
 Form::extend('editor', WangEditor::class);
+Form::extend('ckeditor', CKEditor::class);
