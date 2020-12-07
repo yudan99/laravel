@@ -16,6 +16,8 @@ Route::group([
     $router->resource('chapters', ChaptersController::class);
     $router->resource('sections', SectionsController::class);
 
+    $router->get('ed', 'ChaptersController@ed');
+
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->get('users', 'UsersController@index');
 
@@ -26,7 +28,5 @@ Route::group([
     $router->put('fiels/{id}', 'FielsController@update');
     $router->delete('fiels/{id}', 'FielsController@destroy');
     $router->get('api/fiels', 'FielsController@apiIndex');
-
-
 
 });
