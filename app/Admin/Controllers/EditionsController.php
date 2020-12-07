@@ -28,15 +28,17 @@ class EditionsController extends AdminController
         $grid = new Grid(new Edition());
 
         $grid->column('id', __('Id'));
-        $grid->column('course_id', __('Course id'));
-        $grid->column('edition_version', __('Edition version'));
-        $grid->column('edition_introduce', __('Edition introduce'));
-        $grid->column('is_open', __('Is open'));
-        $grid->column('is_newest', __('Is newest'));
-        $grid->column('care', __('Care'));
-        $grid->column('order', __('Order'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('course_id', __('隶属教程'))->display(function (){
+            return $this->course->course_name;
+        });
+        $grid->column('edition_version', __('版本号'));
+        $grid->column('edition_introduce', __('版本描述'));
+        $grid->column('is_open', __('是否公开'));
+        $grid->column('is_newest', __('是否最新'));
+//        $grid->column('care', __('Care'));
+//        $grid->column('order', __('Order'));
+//        $grid->column('created_at', __('Created at'));
+//        $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
@@ -74,8 +76,8 @@ class EditionsController extends AdminController
     {
         $form = new Form(new Edition());
 
-        $courses = DB::table('courses')->pluck('course_name','id');
-        $form->select('course_id', '关联的教程')->options($courses);
+//        $courses = DB::table('courses')->pluck('course_name','id');
+//        $form->select('course_id', '关联的教程')->options($courses);
 
         //$form->number('course_id', __('关联的教程ID'));
         $form->decimal('edition_version', __('版本号'));

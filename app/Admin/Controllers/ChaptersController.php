@@ -8,6 +8,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class ChaptersController extends AdminController
 {
@@ -28,14 +29,21 @@ class ChaptersController extends AdminController
         $grid = new Grid(new Chapter());
 
         $grid->column('id', __('Id'));
-        $grid->column('edition_id', __('Edition id'));
-        $grid->column('chapter_name', __('Chapter name'));
-        $grid->column('chapter_introduce', __('Chapter introduce'));
-        $grid->column('is_open', __('Is open'));
-        $grid->column('care', __('Care'));
-        $grid->column('order', __('Order'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('course_id', __('隶属教程'))->display(function (){
+            return $this->course->course_name;
+        });
+        $grid->column('edition_id', __('隶属的版本'))->display(function (){
+            if ($this->edition_id){
+                return $this->edition->edition_version;
+            }
+        });
+        $grid->column('chapter_name', __('章节名'));
+        $grid->column('chapter_introduce', __('章节介绍'));
+        $grid->column('is_open', __('是否公开'));
+//        $grid->column('care', __('Care'));
+//        $grid->column('order', __('Order'));
+//        $grid->column('created_at', __('Created at'));
+//        $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
@@ -73,18 +81,20 @@ class ChaptersController extends AdminController
         $form = new Form(new Chapter());
 
 
-// 当前admin版本不支持表单联动when方法
+        //当前admin版本不支持表单联动when方法
 //        $courses = DB::table('courses')->pluck('id','course_name');
 //        $form->select('edition_id','当前章节隶属的版本')->options($courses)->when('>',1, function (Form $form){
-//            $editions = DB::table('editions')->where('course_id','=','id')->pluck('edition_version','id');
+//            $editions = DB::table('editions')->where('course_id','=',16)->pluck('edition_version','id');
 //            $form->select('edition_id', '隶属教程版本')->options($editions);
 //        });
 
-        $courses = DB::table('courses')->pluck('care','id');
-        $form->select('course_id', '关联的教程')->options($courses);
+        //dd($this->modle()->coures_id);
 
-        $editions = DB::table('editions')->pluck('care','id');
-        $form->select('edition_id', '隶属教程版本')->options($editions);
+        $courses = DB::table('courses')->pluck('course_name','id');
+        $form->select('course_id', '关联的教程')->options($courses)->load('edition_id', '/api/edition_id');
+
+        //$editions = DB::table('editions')->where('course_id','=',16)->pluck('edition_version','id');
+        $form->select('edition_id', '隶属教程版本')->options('edition_id');
 
         //$form->number('edition_id', __('隶属教程版本'));
 
@@ -95,6 +105,13 @@ class ChaptersController extends AdminController
         $form->number('order', __('排序号'));
 
         return $form;
+    }
+
+    public function edition_id(Request $request)
+    {
+        $provinceId = $request->get('q');
+        dd(DB::table('editions')->where('course_id','=',$provinceId)->pluck('edition_version','id'));
+        return DB::table('editions')->where('course_id','=',$provinceId)->pluck('edition_version','id');
     }
 
     public function store()
