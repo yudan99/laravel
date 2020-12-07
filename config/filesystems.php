@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'admin' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'visibility' => 'public',
+            'url' => env('APP_URL'),
+        ],
+
 //        'public' => [
 //            'driver' => 'local',
 //            'root' => public_path('uploads'),
@@ -62,12 +69,12 @@ return [
 //            'visibility' => 'public',
 //        ],
 
-        'admin' => [
-            'driver' => 'local',
-            'root' => public_path('uploads'),
-            'visibility' => 'public',
-            'url' => env('APP_URL') . '/uploads',
-        ],
+//        'admin' => [
+//            'driver' => 'local',
+//            'root' => public_path('uploads'),
+//            'visibility' => 'public',
+//            'url' => env('APP_URL') . '/uploads',
+//        ],
 
         's3' => [
             'driver' => 's3',
