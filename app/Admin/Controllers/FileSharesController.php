@@ -144,7 +144,7 @@ class FileSharesController extends AdminController
 //        $form->text('file_status', __('File status'));
 //        $form->text('file_type', __('File type'));
 
-        $form->ckeditor('file_introduction', __('文件详情描述'))->default('测试666');
+        $form->editor('file_introduction', __('文件详情描述'))->default('测试666');
 
         //$form->checkbox('on_sale', '上架')->options(['1' => '是', '0'=> '否'])->default('0');
 

@@ -24,4 +24,4 @@ use Encore\Admin\Form;
 
 Encore\Admin\Form::forget(['map']);
 Form::extend('editor', WangEditor::class);
-Form::extend('ckeditor', CKEditor::class);
+//Form::extend('ckeditor', CKEditor::class);

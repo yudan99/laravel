@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '<b>couxue365</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -158,8 +158,8 @@ return [
 
         // Image and file upload path under the disk above.
         'directory' => [
-            'image' => 'a_images',
-            'file'  => 'a_files',
+            'image' => 'uploads/images/admin',
+            'file'  => 'uploads/file/admin',
         ],
     ],
 

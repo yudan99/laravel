@@ -23,18 +23,18 @@ window.Vue = require('vue');
 
 import root from './components/root.vue'; // 引入Hello 组件
 
-import Vue from 'vue'
-//import  from 'vue-quill-editor'
-import {VueQuillEditor, quillEditor, Quill} from 'vue-quill-editor'
-import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+// import Vue from 'vue'
+// //import  from 'vue-quill-editor'
+// import {VueQuillEditor, quillEditor, Quill} from 'vue-quill-editor'
+// import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
 
 // require styles
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 
 //Vue.use(VueQuillEditor, /* { default global options } */)
-Quill.register('modules/ImageExtend', ImageExtend)
+// Quill.register('modules/ImageExtend', ImageExtend)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
