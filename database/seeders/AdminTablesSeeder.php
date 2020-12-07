@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use DB;
 use Illuminate\Database\Seeder;
 
 class AdminTablesSeeder extends Seeder
@@ -12,8 +15,8 @@ class AdminTablesSeeder extends Seeder
     public function run()
     {
         // base tables
-        Encore\Admin\Auth\Database\Menu::truncate();
-        Encore\Admin\Auth\Database\Menu::insert(
+        \Encore\Admin\Auth\Database\Menu::truncate();
+        \Encore\Admin\Auth\Database\Menu::insert(
             [
                 [
                     "parent_id" => 0,
@@ -122,8 +125,8 @@ class AdminTablesSeeder extends Seeder
             ]
         );
 
-        Encore\Admin\Auth\Database\Permission::truncate();
-        Encore\Admin\Auth\Database\Permission::insert(
+        \Encore\Admin\Auth\Database\Permission::truncate();
+        \Encore\Admin\Auth\Database\Permission::insert(
             [
                 [
                     "name" => "All permission",
@@ -158,8 +161,8 @@ class AdminTablesSeeder extends Seeder
             ]
         );
 
-        Encore\Admin\Auth\Database\Role::truncate();
-        Encore\Admin\Auth\Database\Role::insert(
+        \Encore\Admin\Auth\Database\Role::truncate();
+        \Encore\Admin\Auth\Database\Role::insert(
             [
                 [
                     "name" => "Administrator",
