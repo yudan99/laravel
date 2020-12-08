@@ -36,7 +36,8 @@ class ChaptersController extends AdminController
         });
         $grid->column('edition_id', __('隶属的版本'))->display(function (){
             if ($this->edition_id){
-                return $this->edition->edition_version;
+                //dd($this->edition);
+                return $this->edition_id;
             }
         });
         $grid->column('chapter_name', __('章节名'));
@@ -82,13 +83,26 @@ class ChaptersController extends AdminController
     {
         $form = new Form(new Chapter());
 
-        $courses = DB::table('courses')->pluck('course_name','id');
-        $form->select('course_id', '关联的教程')->options($courses)->load('edition_id', '/admin/ed');
+        //$courses = DB::table('courses')->pluck('course_name','id');
+        $form->select('course_id', '关联的教程')->options(function (){
+            return DB::table('courses')->pluck('course_name','id');
+        })->load('edition_id', '/admin/ed');
+
+
+//        if ($id > 0) {
+//            //$chapter_id = $form->model()->find($id);
+//            $edition_id = DB::table('chapters')->where('id','=',$id)->pluck('edition_id');
+//        } else {
+//            $secondCategory = [];
+//        }
+
 
         //$editions = DB::table('editions')->where('course_id','=',16)->pluck('edition_version','id');
-        $form->select('edition_id', '隶属教程版本')->options(function ($id){
-            return DB::table('editions')->where('course_id','=',$id)->pluck('edition_version','id');
-        });
+        $form->select('edition_id', '隶属教程版本');
+//            ->options(function ($id){
+//            //dd(DB::table('editions')->where('course_id','=',$id)->pluck('edition_version','id'));
+//            return DB::table('editions')->where('course_id','=',$id)->pluck('edition_version','id');
+//        });
 
 //            ->options(function ($id){
 //            return DB::table('editions')->where('id',$id)->pluck('edition_version','id');
@@ -109,7 +123,9 @@ class ChaptersController extends AdminController
     {
         $provinceId = $request->get('q');
         //dd(DB::table('editions')->where('course_id','=',$provinceId)->pluck('edition_version','id'));
-        return DB::table('editions')->where('course_id','=',$provinceId)->pluck('edition_version','id');
+        return DB::table('editions')->where('course_id',$provinceId)->pluck('edition_version','id');
+            //->get(['id', DB::raw('edition_version')]);
+            //->pluck('edition_version','id');
             //Edition::where('course_id',$provinceId)->get(['id',DB::raw('name as text')]);
             //DB::table('editions')->where('course_id','=',$provinceId)->get(['id', DB::raw('name as text')]);
     }
