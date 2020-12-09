@@ -17,6 +17,7 @@ Route::group([
     $router->resource('sections', SectionsController::class);
 
     $router->get('ed', 'ChaptersController@ed');
+    $router->get('cha', 'SectionsController@cha');
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->get('users', 'UsersController@index');

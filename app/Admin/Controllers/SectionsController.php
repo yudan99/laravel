@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SectionsController extends AdminController
@@ -28,27 +29,46 @@ class SectionsController extends AdminController
         $grid = new Grid(new Section());
 
         $grid->column('id', __('Id'));
-        $grid->column('chapter_id', __('Chapter id'));
-        $grid->column('section_name', __('Section name'));
-        $grid->column('section_introduce', __('Section introduce'));
-        $grid->column('section_detail', __('Section detail'));
-        $grid->column('is_open', __('Is open'));
-        $grid->column('is_charge', __('Is charge'));
-        $grid->column('read_count', __('Read count'));
-        $grid->column('read_times', __('Read times'));
-        $grid->column('collect_count', __('Collect count'));
-        $grid->column('forward_count', __('Forward count'));
-        $grid->column('pay_count', __('Pay count'));
-        $grid->column('clock_count', __('Clock count'));
-        $grid->column('comment_count', __('Comment count'));
-        $grid->column('problem_count', __('Problem count'));
-        $grid->column('reply_count', __('Reply count'));
-        $grid->column('care', __('Care'));
-        $grid->column('order', __('Order'));
-        $grid->column('excerpt', __('Excerpt'));
-        $grid->column('slug', __('Slug'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+
+        $grid->column('course_id', __('隶属教程'))
+            ->display(function (){
+                return $this->course->course_name;
+            });
+
+        $grid->column('edition_id', __('隶属教程版本'))
+            ->display(function (){
+                if (isset($this->edition->edition_version)){
+                    return $this->edition->edition_version;
+                }
+            });
+
+        $grid->column('chapter_id', __('隶属章节'))
+            ->display(function (){
+                if (isset($this->chapter->chapter_name)){
+                    return $this->chapter->chapter_name;
+                }
+        });
+
+        $grid->column('section_name', __('小节名'));
+        $grid->column('section_introduce', __('小节介绍'));
+        //$grid->column('section_detail', __('小节详情'));
+        $grid->column('is_open', __('是否公开'));
+        $grid->column('is_charge', __('是否付费'));
+//        $grid->column('read_count', __('Read count'));
+//        $grid->column('read_times', __('Read times'));
+//        $grid->column('collect_count', __('Collect count'));
+//        $grid->column('forward_count', __('Forward count'));
+//        $grid->column('pay_count', __('Pay count'));
+//        $grid->column('clock_count', __('Clock count'));
+//        $grid->column('comment_count', __('Comment count'));
+//        $grid->column('problem_count', __('Problem count'));
+//        $grid->column('reply_count', __('Reply count'));
+//        $grid->column('care', __('Care'));
+//        $grid->column('order', __('Order'));
+//        $grid->column('excerpt', __('Excerpt'));
+//        $grid->column('slug', __('Slug'));
+//        $grid->column('created_at', __('Created at'));
+//        $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
@@ -98,20 +118,32 @@ class SectionsController extends AdminController
     {
         $form = new Form(new Section());
 
+        $form->select('course_id', '关联的教程')->options(function (){
+            return DB::table('courses')->pluck('course_name','id');
+        })->load('edition_id', '/admin/ed');
 
-        $courses = DB::table('courses')->pluck('care','id');
-        $form->select('course_id', '关联的教程')->options($courses);
+        $form->select('edition_id', '隶属教程版本')->options(function ($id){
+            return DB::table('editions')->where('id',$id)->pluck("edition_version",'id');
+        })->load('chapter_id', '/admin/cha');
 
-        $editions = DB::table('editions')->pluck('care','id');
-        $form->select('edition_id', '隶属教程版本')->options($editions);
+        $form->select('chapter_id', '隶属章节')->options(function ($id){
+            return DB::table('chapters')->where('id',$id)->pluck("chapter_name",'id');
+        });
 
-        $chapters = DB::table('chapters')->pluck('care','id');
-        $form->select('chapter_id', '当前小节隶属的章节')->options($chapters);
+
+//        $courses = DB::table('courses')->pluck('care','id');
+//        $form->select('course_id', '关联的教程')->options($courses);
+//
+//        $editions = DB::table('editions')->pluck('care','id');
+//        $form->select('edition_id', '隶属教程版本')->options($editions);
+//
+//        $chapters = DB::table('chapters')->pluck('care','id');
+//        $form->select('chapter_id', '当前小节隶属的章节')->options($chapters);
 
         //$form->number('chapter_id', __('Chapter id'));
         $form->text('section_name', __('小节名'));
         $form->textarea('section_introduce', __('小节介绍'));
-        $form->quill('section_detail', __('小节正文'));
+        $form->editor('section_detail', __('小节正文'));
 
         $form->radio('is_open', __('小节是否公开'))->options(['1' => '公开', '0'=> '不公开'])->default('0');
         $form->radio('is_charge', __('小节是否收费'))->options(['1' => '公开', '0'=> '不公开'])->default('1');
@@ -133,6 +165,18 @@ class SectionsController extends AdminController
         // $form->text('slug', __('Slug'));
 
         return $form;
+    }
+
+    public function ed(Request $request)
+    {
+        $provinceId = $request->get('q');
+        return DB::table('editions')->where('course_id',$provinceId)->get(['id', DB::raw('edition_version as text')]);
+    }
+
+    public function cha(Request $request)
+    {
+        $provinceId = $request->get('q');
+        return DB::table('chapters')->where('edition_id',$provinceId)->get(['id', DB::raw('chapter_name as text')]);
     }
 
     public function store()
