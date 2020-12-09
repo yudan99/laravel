@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Handlers\Base64ToFileHandler;
 use App\Models\Edition;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -87,7 +88,10 @@ class EditionsController extends AdminController
         $form->text('care', __('内部备注'));
         //$form->number('order', __('Order'));
 
+        $form->confirm('确定提交吗？');
+
         return $form;
+
     }
 
     // public function unicodeDecode($name){
@@ -99,42 +103,42 @@ class EditionsController extends AdminController
 
     // }
 
-    public function store()
-    {
-
-
-        $data = \request()->all();
-
-        $course = DB::table('courses')->where('id' , $data['course_id'])->pluck('course_name');
-        $arr = json_decode($course);
-        //$course_name = unicodeDecode($course);
-        //$arr = array($course);
-        $course_name = implode('-',$arr);
-
-
-        //内部备注自动处理
-        $data['care'] = '【'.$course_name.'】-【版本号'.$data['edition_version'].'】---内部备注：'.$data['care'];
-
-        //dd($data);
-
-        // parent::store();
-        Edition::create($data);
-        return redirect()->route('editions.create');
-
-
-//         //创建成功后,返回成功对象
-//         $course = Course::create($data);
-
-//         //$editions = $data['edition'];
-//         //dd($editions);
-//         //$course->addEditions($editions);    //写入关联
-
-// //        dd($data);
-// //        parent::store();
-
-//         return redirect()->route('courses.create');
-//         //return $this->redirectAfterStore();
-    }
+//    public function store()
+//    {
+//
+//
+//        $data = \request()->all();
+//
+//        $course = DB::table('courses')->where('id' , $data['course_id'])->pluck('course_name');
+//        $arr = json_decode($course);
+//        //$course_name = unicodeDecode($course);
+//        //$arr = array($course);
+//        $course_name = implode('-',$arr);
+//
+//
+//        //内部备注自动处理
+//        $data['care'] = '【'.$course_name.'】-【版本号'.$data['edition_version'].'】---内部备注：'.$data['care'];
+//
+//        //dd($data);
+//
+//        // parent::store();
+//        Edition::create($data);
+//        return redirect()->route('editions.create');
+//
+//
+////         //创建成功后,返回成功对象
+////         $course = Course::create($data);
+//
+////         //$editions = $data['edition'];
+////         //dd($editions);
+////         //$course->addEditions($editions);    //写入关联
+//
+//// //        dd($data);
+//// //        parent::store();
+//
+////         return redirect()->route('courses.create');
+////         //return $this->redirectAfterStore();
+//    }
 
 
 }

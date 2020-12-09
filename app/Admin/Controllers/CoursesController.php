@@ -121,22 +121,21 @@ class CoursesController extends AdminController
         $form->editor('course_introduce', __('教程介绍'))->default('这是一段教程介绍');
         $form->text('care', __('补充备注'))->default('这是一段教程备注');
 
-            // 直接添加一对多的关联模型
+            // 添加版本一对多的关联
             $form->hasMany('edition', '添加版本', function (Form\NestedForm $form) {
                 $form->text('edition_version', '版本号')->rules('required')->default('1.22');
                 $form->text('edition_introduce', '版本描述')->rules('required')->default('这是一段版本描述');
                 $form->radio('is_open', __('版本是否公开'))->options(['1' => '公开', '0'=> '不公开'])->default('0');
-    //            $form->text('care', '版本备注')->default('这是一段版本备注');
             });
 
+            //添加章节一对多关联
             $form->hasMany('chapter','添加章节',function (Form\NestedForm $form){
                 $form->text('chapter_name', __('章节名称'));
                 $form->text('chapter_introduce', __('章节介绍'));
                 $form->radio('is_open', __('章节是否公开'))->options(['1' => '公开', '0'=> '不公开'])->default('0');
-//            $form->text('care', __('内部备注'));
-//            $form->number('order', __('排序号'));
             });
 
+            //添加小节一对多关联
             $form->hasMany('section','添加小节',function (Form\NestedForm $form){
                 $form->text('section_name', __('小节名'));
                 $form->textarea('section_introduce', __('小节介绍'));
@@ -146,9 +145,20 @@ class CoursesController extends AdminController
 
             });
 
+        //保存前回调
+        $form->saving(function (Form $form){
 
+            //图片转码转存
+            $form->course_introduce = Base64ToFileHandler::base64ToFile($form->course_introduce);
+            //自动备注
+            $form->care = '【'.$form->course_name.'】---内部备注：'.$form->care;
 
+            return $form;
+        });
 
+        $form->confirm('确定提交吗？');
+
+        return $form;
 
 //        $form->decimal('ini_price', __('初始价'))->default(19.80);
 //        $form->decimal('cur_price', __('现价'))->default(25.80);
@@ -174,32 +184,6 @@ class CoursesController extends AdminController
         //$form->textarea('excerpt', __('Excerpt'));
         //$form->text('slug', __('Slug'));
 
-
-
-
-
-
-
-
-        //保存前回调
-        $form->saving(function (Form $form){
-
-            //图片转码转存
-            $form->course_introduce = Base64ToFileHandler::base64ToFile($form->course_introduce);
-            //自动备注
-            $form->care = '【'.$form->course_name.'】---内部备注：'.$form->care;
-
-            return $form;
-        });
-
-        //$form->confirm('确定提交吗？');
-
-//        $form->saved(function (Form $form){
-//        });
-
-
-
-        return $form;
     }
 
 //    public function store()

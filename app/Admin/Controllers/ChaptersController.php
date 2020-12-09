@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Handlers\Base64ToFileHandler;
 use App\Models\Chapter;
 use App\Models\Edition;
 use Encore\Admin\Controllers\AdminController;
@@ -31,15 +32,18 @@ class ChaptersController extends AdminController
         $grid = new Grid(new Chapter());
 
         $grid->column('id', __('Id'));
-        $grid->column('course_id', __('隶属教程'))->display(function (){
+        $grid->column('course_id', __('隶属教程'))
+            ->display(function (){
             return $this->course->course_name;
         });
-        $grid->column('edition_id', __('隶属的版本'))->display(function (){
-            if ($this->edition_id){
-                //dd($this->edition);
-                return $this->edition_id;
+
+        $grid->column('edition_id', __('隶属教程版本'))
+            ->display(function (){
+            if (isset($this->edition->edition_version)){
+                return $this->edition->edition_version;
             }
         });
+
         $grid->column('chapter_name', __('章节名'));
         $grid->column('chapter_introduce', __('章节介绍'));
         $grid->column('is_open', __('是否公开'));
@@ -83,32 +87,13 @@ class ChaptersController extends AdminController
     {
         $form = new Form(new Chapter());
 
-        //$courses = DB::table('courses')->pluck('course_name','id');
         $form->select('course_id', '关联的教程')->options(function (){
             return DB::table('courses')->pluck('course_name','id');
         })->load('edition_id', '/admin/ed');
 
-
-//        if ($id > 0) {
-//            //$chapter_id = $form->model()->find($id);
-//            $edition_id = DB::table('chapters')->where('id','=',$id)->pluck('edition_id');
-//        } else {
-//            $secondCategory = [];
-//        }
-
-
-        //$editions = DB::table('editions')->where('course_id','=',16)->pluck('edition_version','id');
-        $form->select('edition_id', '隶属教程版本');
-//            ->options(function ($id){
-//            //dd(DB::table('editions')->where('course_id','=',$id)->pluck('edition_version','id'));
-//            return DB::table('editions')->where('course_id','=',$id)->pluck('edition_version','id');
-//        });
-
-//            ->options(function ($id){
-//            return DB::table('editions')->where('id',$id)->pluck('edition_version','id');
-//        });
-
-        //$form->number('edition_id', __('隶属教程版本'));
+        $form->select('edition_id', '隶属教程版本')->options(function ($id){
+            return DB::table('editions')->where('id',$id)->pluck("edition_version",'id');
+        });
 
         $form->text('chapter_name', __('章节名称'));
         $form->text('chapter_introduce', __('章节介绍'));
@@ -116,58 +101,55 @@ class ChaptersController extends AdminController
         $form->text('care', __('内部备注'));
         $form->number('order', __('排序号'));
 
+        $form->confirm('确定提交吗？');
+
         return $form;
     }
 
     public function ed(Request $request)
     {
         $provinceId = $request->get('q');
-        //dd(DB::table('editions')->where('course_id','=',$provinceId)->pluck('edition_version','id'));
-        return DB::table('editions')->where('course_id',$provinceId)->pluck('edition_version','id');
-            //->get(['id', DB::raw('edition_version')]);
-            //->pluck('edition_version','id');
-            //Edition::where('course_id',$provinceId)->get(['id',DB::raw('name as text')]);
-            //DB::table('editions')->where('course_id','=',$provinceId)->get(['id', DB::raw('name as text')]);
+        return DB::table('editions')->where('course_id',$provinceId)->get(['id', DB::raw('edition_version as text')]);
     }
 
-    public function store()
-    {
-
-
-        $data = \request()->all();
-
-        //获取教程名
-        $course = DB::table('courses')->where('id' , $data['course_id'])->pluck('course_name');
-        $arr = json_decode($course);
-        $course_name = implode('-',$arr);
-
-        //获取版本号
-        $edition = DB::table('editions')->where('id', $data['edition_id'])->pluck('edition_version');
-        $arr = json_decode($edition);
-        $edition_version = implode('-',$arr);
-
-
-        //内部备注自动处理
-        $data['care'] = '【'.$course_name.'】-【版本号'.$edition_version.'】-【章节：'.$data['chapter_name'].'】---内部备注：'.$data['care'];
-
-        //dd($data);
-
-        // parent::store();
-        Chapter::create($data);
-        return redirect()->route('chapters.create');
-
-
-//         //创建成功后,返回成功对象
-//         $course = Course::create($data);
-
-//         //$editions = $data['edition'];
-//         //dd($editions);
-//         //$course->addEditions($editions);    //写入关联
-
-// //        dd($data);
-// //        parent::store();
-
-//         return redirect()->route('courses.create');
-//         //return $this->redirectAfterStore();
-    }
+//    public function store()
+//    {
+//
+//
+//        $data = \request()->all();
+//
+//        //获取教程名
+//        $course = DB::table('courses')->where('id' , $data['course_id'])->pluck('course_name');
+//        $arr = json_decode($course);
+//        $course_name = implode('-',$arr);
+//
+//        //获取版本号
+//        $edition = DB::table('editions')->where('id', $data['edition_id'])->pluck('edition_version');
+//        $arr = json_decode($edition);
+//        $edition_version = implode('-',$arr);
+//
+//
+//        //内部备注自动处理
+//        $data['care'] = '【'.$course_name.'】-【版本号'.$edition_version.'】-【章节：'.$data['chapter_name'].'】---内部备注：'.$data['care'];
+//
+//        //dd($data);
+//
+//        // parent::store();
+//        Chapter::create($data);
+//        return redirect()->route('chapters.create');
+//
+//
+////         //创建成功后,返回成功对象
+////         $course = Course::create($data);
+//
+////         //$editions = $data['edition'];
+////         //dd($editions);
+////         //$course->addEditions($editions);    //写入关联
+//
+//// //        dd($data);
+//// //        parent::store();
+//
+////         return redirect()->route('courses.create');
+////         //return $this->redirectAfterStore();
+//    }
 }
