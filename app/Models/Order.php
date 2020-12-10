@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+
 class Order extends Model
 {
     const REFUND_STATUS_PENDING = 'pending';
