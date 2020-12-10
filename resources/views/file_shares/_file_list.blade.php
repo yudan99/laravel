@@ -2,7 +2,7 @@
     <ul class="list-unstyled">
         @foreach ($file_shares as $file_share)
 
-            <li class="card">
+            <li class="card" id="file-card" data-id="{{ $file_share->id }}">
 
                 <div class="card-header">
                     <div class="media">
@@ -42,7 +42,10 @@
                             <button class="btn btn-secondary" >收藏</button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary" >购买</button>
+                            <form id="order-form">
+                                <input type="hidden" name="file_share_id" value="{{ $file_share->id }}">
+                            <button class="btn btn-primary btn-create-order" id="{{ $file_share->id }}">购买</button>
+                            </form>
                         </div>
                         <div class="col">
                             <a href="{{ $file_share->tem_path }}" download="{{ $file_share->st_path }}">

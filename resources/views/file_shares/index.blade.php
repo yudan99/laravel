@@ -20,6 +20,11 @@
         </div>
     </div>
 
+
+@endsection
+
+@section('scriptsAfterJs')
+
 @endsection
 
 
