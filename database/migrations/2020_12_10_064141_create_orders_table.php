@@ -10,9 +10,12 @@ class CreateOrdersTable extends Migration
 		Schema::create('orders', function(Blueprint $table) {
             $table->increments('id');
             $table->string('order_no')->index();
+
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->decimal('total_amount')->default(0);
-            $table->decimal('deal_amount')->default(0);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->decimal('total_amount',5,2)->default(0);
+            $table->decimal('deal_amount',5,2)->default(0);
             $table->string('deal_type')->index();
             $table->timeStamp('paid_at')->nullable();
             $table->string('paid_type')->index();

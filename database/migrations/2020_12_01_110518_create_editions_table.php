@@ -15,7 +15,10 @@ class CreateEditionsTable extends Migration
     {
         Schema::create('editions', function (Blueprint $table) {
             $table->id();
+
             $table->bigInteger('course_id')->unsigned()->index();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+
             $table->string('edition_version')->unsigned();
             $table->string('edition_introduce')->nullable();
             $table->boolean('is_open')->default(0);

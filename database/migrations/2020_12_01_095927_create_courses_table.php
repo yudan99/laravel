@@ -15,8 +15,8 @@ class CreateCoursesTable extends Migration
             $table->string('cover')->nullable();
             $table->string('author')->nullable();
             $table->longText('course_introduce')->nullable();
-            $table->decimal('ini_price')->default(0);
-            $table->decimal('cur_price')->default(0);
+            $table->decimal('ini_price',4,2)->default(0);
+            $table->decimal('cur_price',4,2)->default(0);
             $table->boolean('is_open')->default(0);
             $table->integer('read_count')->unsigned()->default(0);
             $table->integer('read_times')->unsigned()->default(0);

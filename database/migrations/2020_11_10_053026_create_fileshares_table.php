@@ -9,7 +9,10 @@ class CreateFileSharesTable extends Migration
 	{
 		Schema::create('file_shares', function(Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timeStamp('sh_time')->nullable();
             $table->timeStamp('sub_time')->nullable();
             $table->integer('file_verify')->unsigned()->default(0);
@@ -22,8 +25,8 @@ class CreateFileSharesTable extends Migration
             $table->string('pic_preview', 3072)->nullable();
             $table->string('tem_path', 1024)->nullable();
             $table->string('st_path', 1024)->nullable();
-            $table->decimal('ini_price')->default(0);
-            $table->decimal('cur_price')->default(0);
+            $table->decimal('ini_price',3,2)->default(0);
+            $table->decimal('cur_price',3,2)->default(0);
             $table->integer('read_count')->unsigned()->default(0);
             $table->integer('read_times')->unsigned()->default(0);
             $table->integer('collect_count')->unsigned()->default(0);
