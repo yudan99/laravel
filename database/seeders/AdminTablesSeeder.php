@@ -20,7 +20,7 @@ class AdminTablesSeeder extends Seeder
             [
                 [
                     "parent_id" => 0,
-                    "order" => 1,
+                    "order" => 8,
                     "title" => "Dashboard",
                     "icon" => "fa-bar-chart",
                     "uri" => "/",
@@ -28,7 +28,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 0,
-                    "order" => 2,
+                    "order" => 9,
                     "title" => "Admin",
                     "icon" => "fa-tasks",
                     "uri" => "",
@@ -36,7 +36,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 3,
+                    "order" => 10,
                     "title" => "Users",
                     "icon" => "fa-users",
                     "uri" => "auth/users",
@@ -44,7 +44,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 4,
+                    "order" => 11,
                     "title" => "Roles",
                     "icon" => "fa-user",
                     "uri" => "auth/roles",
@@ -52,7 +52,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 5,
+                    "order" => 12,
                     "title" => "Permission",
                     "icon" => "fa-ban",
                     "uri" => "auth/permissions",
@@ -60,7 +60,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 6,
+                    "order" => 13,
                     "title" => "Menu",
                     "icon" => "fa-bars",
                     "uri" => "auth/menu",
@@ -68,7 +68,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 7,
+                    "order" => 14,
                     "title" => "Operation log",
                     "icon" => "fa-history",
                     "uri" => "auth/logs",
@@ -76,7 +76,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 0,
-                    "order" => 0,
+                    "order" => 7,
                     "title" => "领域分类管理",
                     "icon" => "fa-bars",
                     "uri" => "/fiels",
@@ -84,42 +84,50 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 0,
-                    "order" => 0,
+                    "order" => 6,
                     "title" => "文件分享管理",
                     "icon" => "fa-clipboard",
                     "uri" => "/file-shares",
                     "permission" => NULL
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 0,
-                    "title" => "教程创建管理",
+                    "parent_id" => 14,
+                    "order" => 2,
+                    "title" => "创建教程",
                     "icon" => "fa-bars",
                     "uri" => "/courses",
                     "permission" => NULL
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 0,
+                    "parent_id" => 14,
+                    "order" => 3,
                     "title" => "教程版本管理",
                     "icon" => "fa-bars",
                     "uri" => "/editions",
                     "permission" => NULL
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 0,
-                    "title" => "教程章节管理",
+                    "parent_id" => 14,
+                    "order" => 4,
+                    "title" => "章节管理",
                     "icon" => "fa-bars",
                     "uri" => "/chapters",
                     "permission" => NULL
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 0,
-                    "title" => "教程小节详情",
+                    "parent_id" => 14,
+                    "order" => 5,
+                    "title" => "小节管理",
                     "icon" => "fa-bars",
                     "uri" => "/sections",
+                    "permission" => NULL
+                ],
+                [
+                    "parent_id" => 0,
+                    "order" => 1,
+                    "title" => "教程",
+                    "icon" => "fa-arrows",
+                    "uri" => NULL,
                     "permission" => NULL
                 ]
             ]

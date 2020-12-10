@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ChaptersTableSeeder::class);
         $this->call(SectionsTableSeeder::class);
 
-        $this->call(AdminTablesSeeder::class);
+        //$this->call(AdminTablesSeeder::class);
 
         Model::reguard();
     }
