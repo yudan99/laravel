@@ -8,7 +8,7 @@ class CreateOrderItemsTable extends Migration
 	public function up()
 	{
 		Schema::create('order_items', function(Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
             $table->bigInteger('order_id')->unsigned()->index();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

@@ -8,7 +8,7 @@ class CreateSectionsTable extends Migration
 	public function up()
 	{
 		Schema::create('sections', function(Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
 
             $table->bigInteger('course_id')->unsigned()->nullable();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
