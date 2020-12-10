@@ -50,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
 	{
 		\App\Models\User::observe(\App\Observers\UserObserver::class);
+		\App\Models\OrderItem::observe(\App\Observers\OrderItemObserver::class);
+		\App\Models\Order::observe(\App\Observers\OrderObserver::class);
 		\App\Models\Section::observe(\App\Observers\SectionObserver::class);
 		\App\Models\Course::observe(\App\Observers\CourseObserver::class);
 		\App\Models\Fiel::observe(\App\Observers\FielObserver::class);

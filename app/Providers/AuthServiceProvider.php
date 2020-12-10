@@ -13,6 +13,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+		 \App\Models\OrderItem::class => \App\Policies\OrderItemPolicy::class,
+		 \App\Models\Order::class => \App\Policies\OrderPolicy::class,
 		 \App\Models\Section::class => \App\Policies\SectionPolicy::class,
 		 \App\Models\Course::class => \App\Policies\CoursePolicy::class,
 		 \App\Models\Fiel::class => \App\Policies\FielPolicy::class,

@@ -41,3 +41,6 @@ Route::get('alipay', function() {
         'subject' => 'test subject - 测试',
     ]);
 });
+
+Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('order_items', 'OrderItemsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
