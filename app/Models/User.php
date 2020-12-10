@@ -53,6 +53,10 @@ class User extends Authenticatable //implements MustVerifyEmail
         return $this->belongsToMany(Fiel::class, 'fiels2users', 'user_id','fiel_id');
     }
 
+    public function order(){
+        return $this->hasMany(Order::class);
+    }
+
     public function addFiel($fiel_ids){
         if(!is_array($fiel_ids)){
             $fiel_ids = compact('fiel_ids');

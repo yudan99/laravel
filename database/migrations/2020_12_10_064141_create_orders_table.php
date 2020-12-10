@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->timeStamp('paid_at')->nullable();
             $table->string('paid_type')->index();
             $table->string('paid_no')->nullable();
-            $table->string('refund_status');
+            $table->string('refund_status')->default(\App\Models\Order::REFUND_STATUS_PENDING);
             $table->string('refund_no')->nullable();
             $table->boolean('is_closed')->default(0);
             $table->boolean('is_open')->default(1);

@@ -42,7 +42,7 @@ class Fiel extends Model
     }
 
 
-    public function fileshare()
+    public function fileShare()
     {
         return $this->belongsToMany(FileShare::class, 'fiels2files', 'fiel_id','file_id');
     }

@@ -17,6 +17,10 @@ class FileShare extends Model
         return $this->belongsToMany(Fiel::class, 'fiels2files', 'file_id','fiel_id');
     }
 
+    public function orderItem(){
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function addFiel($fiel_ids){
         if(!is_array($fiel_ids)){
             $fiel_ids = compact('fiel_ids');

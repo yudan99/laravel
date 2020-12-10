@@ -28,6 +28,10 @@ class Course extends Model
         return $this->hasMany(Section::class);
     }
 
+    public function orderItem(){
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function addEditions($editions){
         if(!is_array($editions)){
             $$editions = compact('editions');
