@@ -24,8 +24,40 @@
 @endsection
 
 @section('scriptsAfterJs')
+    <script>
+        $(document).ready(function () {
+            // 监听创建订单按钮的点击事件
+            $('.btn-create-order').click(function () {
 
+                axios.post('{{ route('orders.store') }}', {
+                    file_share_id: $('.order-on input').val(),
+                    file: $('.order-in input[name=in]').val(),
+                    //file_share_id: 37,
+                })
+                    .then(function (response) {
+                        // swal('订单提交成功', '', 'success');
+                    }, function (error) {
+                        if (error.response.status === 422) {
+                            // http 状态码为 422 代表用户输入校验失败
+                            var html = '<div>';
+                            _.each(error.response.data.errors, function (errors) {
+                                _.each(errors, function (error) {
+                                    html += error+'<br>';
+                                })
+                            });
+                            html += '</div>';
+                            swal({content: $(html)[0], icon: 'error'})
+                        } else {
+                            // 其他情况应该是系统挂了
+                            swal('系统错误', '', 'error');
+                        }
+                    });
+            });
+
+        });
+    </script>
 @endsection
+
 
 
 {{--@extends('layouts.app')--}}
