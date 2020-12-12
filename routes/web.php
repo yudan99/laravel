@@ -26,6 +26,13 @@ Auth::routes(['verify'=> true]); //['verify' => true]
 
 Route::post('file/orders', 'OrdersController@storeFileOrder')->name('orders.store_file_order');
 
+//支付宝路由
+Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+//支付宝前端回调
+Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
+//支付宝服务端回调，注意不能放在auth中间件组中，因为不带认证信息
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
+
 Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update', 'edit']]
 
 //Route::get('/home', 'HomeController@index')->name('home');
