@@ -71,8 +71,10 @@ class PaymentController extends Controller
             'paid_at'        => Carbon::now(), // 支付时间
             'paid_type' => 'alipay', // 支付方式
             'paid_no'     => $data->trade_no, // 支付宝订单号
+            'deal_type' => 'finished',//交易状态
         ]);
 
         return app('alipay')->success();
     }
+
 }
