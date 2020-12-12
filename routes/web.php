@@ -24,7 +24,7 @@ Route::get('/', 'PagesController@root')->name('root');  //->middleware('verified
 
 Auth::routes(['verify'=> true]); //['verify' => true]
 
-Route::post('orders', 'OrdersController@store')->name('orders.store');
+Route::post('file/orders', 'OrdersController@storeFileOrder')->name('orders.store_file_order');
 
 Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update', 'edit']]
 

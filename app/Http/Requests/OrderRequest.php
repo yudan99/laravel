@@ -7,21 +7,21 @@ use App\Models\OrderItem;
 
 class OrderRequest extends Request
 {
-    public  function  rules(){
-        return [
-            'file_share_id' => [
-              'required',
-              function($attribute, $value, $fail){
-                if (!$file = FileShare::find($value)){
-                    return $fail('当前内容不存在');
-                }
-                  if (!$file->is_open){
-                      return $fail('当前内容未公开');
-                  }
-              }
-            ],
-        ];
-    }
+//    public  function  rules(){
+//        return [
+//            'file_share_id' => [
+//              'required',
+//              function($attribute, $value, $fail){
+//                if (!$file = FileShare::find($value)){
+//                    return $fail('当前内容不存在');
+//                }
+//                  if (!$file->is_open){
+//                      return $fail('当前内容未公开');
+//                  }
+//              }
+//            ],
+//        ];
+//    }
 //    public function rules()
 //    {
 //        return [
@@ -73,33 +73,33 @@ class OrderRequest extends Request
 //        ];
 //    }
 
-//    public function rules()
-//    {
-//        switch($this->method())
-//        {
-//            // CREATE
-//            case 'POST':
-//            {
-//                return [
-//                    // CREATE ROLES
-//                ];
-//            }
-//            // UPDATE
-//            case 'PUT':
-//            case 'PATCH':
-//            {
-//                return [
-//                    // UPDATE ROLES
-//                ];
-//            }
-//            case 'GET':
-//            case 'DELETE':
-//            default:
-//            {
-//                return [];
-//            }
-//        }
-//    }
+    public function rules()
+    {
+        switch($this->method())
+        {
+            // CREATE
+            case 'POST':
+            {
+                return [
+                    // CREATE ROLES
+                ];
+            }
+            // UPDATE
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    // UPDATE ROLES
+                ];
+            }
+            case 'GET':
+            case 'DELETE':
+            default:
+            {
+                return [];
+            }
+        }
+    }
 
     public function messages()
     {

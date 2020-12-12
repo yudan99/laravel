@@ -2,7 +2,7 @@
     <ul class="list-unstyled">
         @foreach ($file_shares as $file_share)
 
-            <li class="card" id="file-card">
+            <li class="card f-card" id="file-card" data-id="{{ $file_share->id }}">
 
                 <div class="card-header">
                     <div class="media">
@@ -37,14 +37,16 @@
                 </div>
 
                 <div class="card-footer order-in">
-                    <input type="hidden" name="in" value="{{ $file_share->id }}">
                     <div class="row">
                         <div class="col">
                             <button class="btn btn-secondary" >收藏</button>
                         </div>
-                        <div class="col order-on">
-                                <input type="hidden" value="{{ $file_share->id }}">
-                            <button class="btn btn-primary btn-create-order">购买</button>
+                        <div class="col">
+                            <form action="{{ route('orders.store_file_order') }}" method="POST" target="view_window">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="file_share_id" value="{{ $file_share->id }}">
+                            <button class="btn btn-primary btn-create-order">{{ $file_share->cur_price }}元 购买</button>
+                            </form>
                         </div>
                         <div class="col">
                             <a href="{{ $file_share->tem_path }}" download="{{ $file_share->st_path }}">
