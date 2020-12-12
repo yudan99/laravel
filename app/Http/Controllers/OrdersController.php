@@ -27,9 +27,9 @@ class OrdersController extends Controller
 		return view('orders.index', compact('orders'));
 	}
 
-    public function show(Order $order)
+    public function show(Order $order, Request $request)
     {
-        return view('orders.show', compact('order'));
+        return view('orders.show', ['order'=>$order->load('order_item')]);
     }
 
 	public function create(Order $order)
@@ -37,18 +37,18 @@ class OrdersController extends Controller
 		return view('orders.create_and_edit', compact('order'));
 	}
 
-	public function storeFileOrder(Request $Request){
+	public function storeFileOrder(OrderRequest $orderRequest){
 
-        $data = $Request->all();
-        Log::alert($data);
+        $data = $orderRequest->all();
         $fileShare = $data['file_share_id'];
+        Log::alert($data);
         //Log::info($fileShare);
 
         //获取当前登录用户的ID
         $user_id = Auth::id();
 
         //开启一个数据库例行事务
-        $order = \DB::transaction(function () use($user_id,$fileShare) {
+        $order = \DB::transaction(function () use($fileShare,$user_id) {
 
             //创建一个订单，总金额暂时默认为0
             $order = new Order(['total_amount' => 0]);
