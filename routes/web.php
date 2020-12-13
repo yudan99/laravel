@@ -34,6 +34,11 @@ Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('pay
 //支付宝服务端回调，注意不能放在auth中间件组中，因为不带认证信息
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
 
+//微信路由
+Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
+//服务端回调，注意不要放在auth组中
+Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
+
 Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update', 'edit']]
 
 //Route::get('/home', 'HomeController@index')->name('home');
