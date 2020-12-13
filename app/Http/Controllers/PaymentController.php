@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Exceptions\InvalidRequestException;
 use Carbon\Carbon;
+use Endroid\QrCode\QrCode;
 
 class PaymentController extends Controller
 {
@@ -87,11 +88,17 @@ class PaymentController extends Controller
             throw new InvalidRequestException('订单状态不正确');
         }
         // scan 方法为拉起微信扫码支付
-        return app('wechat_pay')->scan([
+        $wechatOrder = app('wechat_pay')->scan([
             'out_trade_no' => $order->order_no,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->total_amount * 100, // 与支付宝不同，微信支付的金额单位是分。
             'body'      => '支付来自 凑学 的订单：'.$order->order_no, // 订单描述
         ]);
+
+        // 把要转换的字符串作为 QrCode 的构造函数参数
+        $qrCode = new QrCode($wechatOrder->code_url);
+
+        // 将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
+        return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
     //微信的扫码支付没有前端回调只有服务器端回调

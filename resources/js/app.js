@@ -16,12 +16,16 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+import swal from 'sweetalert';
+
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 import root from './components/root.vue'; // 引入Hello 组件
+
+
 
 // import Vue from 'vue'
 // //import  from 'vue-quill-editor'

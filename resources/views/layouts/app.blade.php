@@ -11,6 +11,7 @@
     <meta name="description" content="@yield('description', '凑学')" />
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
     @yield('styles')
 
 
@@ -26,6 +27,7 @@
 
 <!-- JS -->
 <script src="{{ mix('js/app.js') }}"></script>
+
 {{--<script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>--}}
 
 @yield('scripts')
