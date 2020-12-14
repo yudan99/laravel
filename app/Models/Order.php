@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -80,6 +81,12 @@ class Order extends Model
 
     public function orderItem(){
         return $this->hasMany(OrderItem::class);
+    }
+
+    //让后台时间显示正常一点
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('m-d H:i:s');
     }
 
 }

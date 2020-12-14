@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
+
 class Course extends Model
 {
     protected $fillable = ['course_name', 'fiels', 'tags', 'cover', 'author', 'course_introduce', 'ini_price', 'cur_price', 'is_open','read_count', 'read_times', 'collect_count', 'forward_count', 'pay_count', 'clock_count', 'comment_count', 'problem_count', 'reply_count', 'care', 'order', 'excerpt', 'slug'];
@@ -40,6 +42,12 @@ class Course extends Model
         foreach ($editions as $column => $value) {
             $this->edition()->create($value);
         }
+    }
+
+    //让后台时间显示正常一点
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 
     // protected static function boot()

@@ -61,7 +61,7 @@ class OrdersController extends Controller
             if (FileShare::find($fileShare)){
                 $file = FileShare::find($fileShare);
                 $item = $order->orderItem()->make([
-                    'product_type' => 'PRODUCT_FILE',
+                    'product_type' => OrderItem::PRODUCT_FILE,
                     'price' => $file->cur_price,
                     'amount' => '1',
                 ]);

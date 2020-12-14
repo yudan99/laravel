@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Edition extends Model
@@ -24,6 +25,12 @@ class Edition extends Model
     public function section()
     {
         return $this->hasMany(Section::class);
+    }
+
+    //让后台时间显示正常一点
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 
 }

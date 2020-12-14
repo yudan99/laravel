@@ -3,6 +3,7 @@
 //namespace App;
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,6 +74,12 @@ class User extends Authenticatable //implements MustVerifyEmail
 
     public function isFiel($fiel_id){
         return $this->fiel()->contains($fiel_id);
+    }
+
+    //让后台时间显示正常一点
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 
 }

@@ -13,7 +13,7 @@ class CreateOrderItemsTable extends Migration
             $table->bigInteger('order_id')->unsigned()->index();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
-            $table->string('product_type')->index();
+            $table->string('product_type')->index()->default(\App\Models\OrderItem::PRODUCT);
 
             $table->bigInteger('file_share_id')->unsigned()->nullable()->index();
             $table->foreign('file_share_id')->references('id')->on('file_shares')->onDelete('cascade');
