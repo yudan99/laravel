@@ -56,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
 	{
 		\App\Models\User::observe(\App\Observers\UserObserver::class);
+		\App\Models\CouponCode::observe(\App\Observers\CouponCodeObserver::class);
 		\App\Models\OrderItem::observe(\App\Observers\OrderItemObserver::class);
 		\App\Models\Order::observe(\App\Observers\OrderObserver::class);
 		\App\Models\Section::observe(\App\Observers\SectionObserver::class);

@@ -89,4 +89,9 @@ class Order extends Model
         return $date->format('m-d H:i:s');
     }
 
+    public function couponCode()
+    {
+        return $this->belongsTo(CouponCode::class);
+    }
+
 }

@@ -59,3 +59,5 @@ Route::get('alipay', function() {
     ]);
 });
 
+
+Route::resource('coupon_codes', 'CouponCodesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
