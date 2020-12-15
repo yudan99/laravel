@@ -17,6 +17,7 @@ Route::group([
     $router->resource('sections', SectionsController::class);
     $router->resource('orders', OrdersController::class);
     $router->resource('order-items', OrderItemsController::class);
+    $router->resource('coupon-codes', CouponCodesController::class);
 
     $router->get('ed', 'ChaptersController@ed');
     $router->get('cha', 'SectionsController@cha');
