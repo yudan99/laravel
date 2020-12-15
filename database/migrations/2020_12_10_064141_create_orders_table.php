@@ -16,13 +16,13 @@ class CreateOrdersTable extends Migration
 
             $table->decimal('total_amount',5,2)->default(0);
             $table->decimal('deal_amount',5,2)->default(0);
-            $table->string('deal_type')->index();
+            $table->string('deal_type')->default(\App\Models\Order::REFUND_STATUS_PENDING);;
 
             $table->unsignedBigInteger('coupon_code_id')->nullable();
             //$table->foreign('coupon_code_id')->references('id')->on('coupon_codes')->onDelete('set null');
 
             $table->timeStamp('paid_at')->nullable();
-            $table->string('paid_type')->index();
+            $table->string('paid_type')->nullable();
             $table->string('paid_no')->nullable();
             $table->string('refund_status')->default(\App\Models\Order::REFUND_STATUS_PENDING);
             $table->string('refund_no')->nullable();

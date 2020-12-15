@@ -38,6 +38,19 @@
                     </table>
                     <div class="order-bottom">
                         <div class="order-info">
+                            <!-- 优惠码开始 -->
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3 text-md-right"><h3>优惠码</h3></label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="coupon_code">
+                                    <span class="form-text text-muted" id="coupon_desc"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-success" id="btn-check-coupon">使用</button>
+                                    <button type="button" class="btn btn-danger" style="display: none;" id="btn-cancel-coupon">取消</button>
+                                </div>
+                            </div>
+                            <!-- 优惠码结束 -->
                             <div class="line"><div class="line-label"><b>请注意：</b></div><div class="line-value">虚拟内容商品，购买后不支持退货、转让、退换<br>购买过程中，出现问题请联系小助理 <a href="#">小瑶</a></div></div>
                         </div>
                         <div class="order-summary text-right">
@@ -64,7 +77,7 @@
                                 @if(!$order->paid_at && !$order->closed)
                                     <div class="payment-buttons">
                                         <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
-                                        <a target="_blank" class="btn btn-success btn-sm" href="{{ route('payment.wechat', ['order' => $order->id]) }}">微信支付jiu</a>
+{{--                                        <a target="_blank" class="btn btn-success btn-sm" href="{{ route('payment.wechat', ['order' => $order->id]) }}">微信支付jiu</a>--}}
                                         <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
                                     </div>
                             @endif
@@ -97,6 +110,48 @@
                     })
             });
         });
+
+        // 检查按钮点击事件
+        $('#btn-check-coupon').click(function () {
+            // 获取用户输入的优惠码
+            var code = $('input[name=coupon_code]').val();
+            // 如果没有输入则弹框提示
+            if(!code) {
+                swal('请输入优惠码', '', 'warning');
+                return;
+            }
+
+            // 调用检查接口
+            axios.get('/coupon_codes/' + encodeURIComponent(code))
+                .then(function (response) {  // then 方法的第一个参数是回调，请求成功时会被调用
+                    $('#coupon_desc').text(response.data.description); // 输出优惠信息
+                    $('input[name=coupon_code]').prop('readonly', true); // 禁用输入框
+                    $('#btn-cancel-coupon').show(); // 显示 取消 按钮
+                    $('#btn-check-coupon').hide(); // 隐藏 检查 按钮
+                }, function (error) {
+                    // 如果返回码是 404，说明优惠券不存在
+                    if(error.response.status === 404) {
+                        swal('优惠码不存在', '', 'error');
+                    } else if (error.response.status === 403) {
+                        // 如果返回码是 403，说明有其他条件不满足
+                        swal(error.response.data.msg, '', 'error');
+                    } else {
+                        // 其他错误
+                        swal('系统内部错误', '', 'error');
+                    }
+                })
+        });
+
+        // 隐藏 按钮点击事件
+        $('#btn-cancel-coupon').click(function () {
+            $('#coupon_desc').text(''); // 隐藏优惠信息
+            $('input[name=coupon_code]').prop('readonly', false);  // 启用输入框
+            $('#btn-cancel-coupon').hide(); // 隐藏 取消 按钮
+            $('#btn-check-coupon').show(); // 显示 检查 按钮
+        });
+
+
+
     </script>
 @endsection
 
