@@ -30,8 +30,15 @@
                                     </div>
                                 </td>
                                 <td class="sku-price text-center vertical-middle">￥{{ $order_item->price }}</td>
-                                <td class="sku-price text-center vertical-middle">暂无折扣</td>
-                                <td class="item-amount text-right vertical-middle">￥{{ $order_item->price }}</td>
+
+                                @if($order->coupon_code_id)
+                                <td class="sku-price text-center vertical-middle">{{ $order->couponCode->description }}</td>
+                                @else
+                                    <td class="sku-price text-center vertical-middle">暂无优惠</td>
+                                @endif
+
+
+                                <td class="item-amount text-right vertical-middle">￥{{ $order->total_amount }}</td>
                             </tr>
                         @endforeach
                         <tr><td colspan="4"></td></tr>
@@ -40,15 +47,18 @@
                         <div class="order-info">
                             <!-- 优惠码开始 -->
                             <div class="form-group row">
-                                <label class="col-form-label col-sm-3 text-md-right"><h3>优惠码</h3></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="coupon_code">
-                                    <span class="form-text text-muted" id="coupon_desc"></span>
-                                </div>
-                                <div class="col-sm-3">
-                                    <button type="button" class="btn btn-success" id="btn-check-coupon">使用</button>
-                                    <button type="button" class="btn btn-danger" style="display: none;" id="btn-cancel-coupon">取消</button>
-                                </div>
+                                <form class="col" action="{{ route('orders.update_file_order', $order->id) }}" method="POST">
+                                    {{ method_field('PATCH') }}
+                                    {{ csrf_field() }}
+                                    <label class="col"><h5>优惠码</h5></label>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="coupon_code">
+                                        <span class="form-text text-muted" id="coupon_desc"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger" style="display: none;" id="btn-cancel-coupon">确认使用<br>该优惠</button>
+                                    <button type="button" class="btn btn-success" id="btn-check-coupon">检验</button>
+                                </form>
+
                             </div>
                             <!-- 优惠码结束 -->
                             <div class="line"><div class="line-label"><b>请注意：</b></div><div class="line-value">虚拟内容商品，购买后不支持退货、转让、退换<br>购买过程中，出现问题请联系小助理 <a href="#">小瑶</a></div></div>
@@ -124,10 +134,10 @@
             // 调用检查接口
             axios.get('/coupon_codes/' + encodeURIComponent(code))
                 .then(function (response) {  // then 方法的第一个参数是回调，请求成功时会被调用
-                    $('#coupon_desc').text(response.data.description); // 输出优惠信息
+                    $('#coupon_desc').text(response.data.description); // 输出显示优惠信息
                     $('input[name=coupon_code]').prop('readonly', true); // 禁用输入框
-                    $('#btn-cancel-coupon').show(); // 显示 取消 按钮
-                    $('#btn-check-coupon').hide(); // 隐藏 检查 按钮
+                    $('#btn-cancel-coupon').show(); // 显示 使用 按钮
+                    $('#btn-check-coupon').hide(); // 隐藏 检验 按钮
                 }, function (error) {
                     // 如果返回码是 404，说明优惠券不存在
                     if(error.response.status === 404) {
@@ -143,12 +153,13 @@
         });
 
         // 隐藏 按钮点击事件
-        $('#btn-cancel-coupon').click(function () {
-            $('#coupon_desc').text(''); // 隐藏优惠信息
-            $('input[name=coupon_code]').prop('readonly', false);  // 启用输入框
-            $('#btn-cancel-coupon').hide(); // 隐藏 取消 按钮
-            $('#btn-check-coupon').show(); // 显示 检查 按钮
-        });
+        // $('#btn-cancel-coupon').click(function () {
+        //     // axios.post()
+        //     // $('#coupon_desc').text(''); // 隐藏优惠信息
+        //     // $('input[name=coupon_code]').prop('readonly', false);  // 启用输入框
+        //     // $('#btn-cancel-coupon').hide(); // 隐藏 取消 按钮
+        //     // $('#btn-check-coupon').show(); // 显示 检查 按钮
+        // });
 
 
 

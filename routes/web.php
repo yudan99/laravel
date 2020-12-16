@@ -26,6 +26,7 @@ Route::get('/', 'PagesController@root')->name('root');  //->middleware('verified
 Auth::routes(['verify'=> true]); //['verify' => true]
 
 Route::post('file/orders', 'OrdersController@storeFileOrder')->name('orders.store_file_order');
+Route::patch('file/orders/{order}', 'OrdersController@updateFileOrder')->name('orders.update_file_order');
 
 //支付宝路由
 Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');

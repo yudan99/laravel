@@ -13,6 +13,8 @@ use App\Http\Requests\OrderRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\CouponCode;
+use App\Exceptions\CouponCodeUnavailableException;
 
 class OrdersController extends Controller
 {
@@ -79,6 +81,52 @@ class OrdersController extends Controller
 
         //return view('orders.show',['order' => $order]);
         return redirect()->route('orders.show', $order->id)->with('message', 'Created successfully.');
+    }
+
+
+
+    //优惠码校验和订单更新
+    public function updateFileOrder(Request $request, Order $order){
+        //$this->authorize('update', $user);
+
+        $data = $request->all();
+        Log::alert($data);
+
+        $code = $data['coupon_code'];
+
+        //$coupon = new CouponCode();
+        //$coupon = \DB::table('coupon_codes')->where('code', $code)->first();
+
+        $coupon = CouponCode::check($code);
+
+        // 如果传入了优惠券，则先检查是否可用
+        if ($coupon) {
+            // 但此时还没有计算出订单总金额，因此先不金额校验
+            $coupon->checkAvailable();
+        }
+
+        $order = \DB::transaction(function () use($data, $order, $coupon){
+            if ($coupon){
+                //对订单总金额做校验，是否符合订单最低使用金额
+                $coupon->checkAvailable($order->total_amount);
+                //把订单的总金额，修改为优惠以后的金额
+                $data['total_amount'] = $coupon->getAdjustedPrice($order->total_amount);
+                //$order->total_amount
+                //增加优惠码和订单的关联
+                $order->couponCode()->associate($coupon);
+                //增加优惠码的用量，判断返回值
+                if ($coupon->changeUsed() <= 0){
+                    throw new CouponCodeUnavailableException('该优惠券已经被兑换完');
+                }
+                //更新订单的数据
+                $order->update($data);
+            }
+            return $order;
+        });
+
+        //$order->update(['coupon_code_id' => '123', 'total_amount' => '321']);
+
+        return redirect()->route('orders.show', $order->id);
     }
 
 //	public function store(Request $request)
