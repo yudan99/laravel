@@ -138,24 +138,13 @@ class FileSharesController extends AdminController
         $form = new Form(new FileShare());
 
         $form->number('user_id', __('文件归属用户'))->default(1);
-//        $form->datetime('sh_time', __('Sh time'))->default(date('Y-m-d H:i:s'));
-//        $form->datetime('sub_time', __('Sub time'))->default(date('Y-m-d H:i:s'));
-//        $form->number('file_verify', __('File verify'));
-//        $form->text('file_status', __('File status'));
-//        $form->text('file_type', __('File type'));
 
         $form->editor('file_introduction', __('文件详情描述'))->default('测试666');
-
-        //$form->checkbox('on_sale', '上架')->options(['1' => '是', '0'=> '否'])->default('0');
-
-
-
 
         $fiels = DB::table('fiels')->where('level','!=',0)->pluck('name','id');
         $form->checkbox('fiels', '领域')->options($fiels);
 
-        //$form->multipleSelect('fiels',__('领域'))->options(Fiel::all()->pluck('name','id'));
-        //$form->checkbox('fiels', '领域')->options(Fiel::all()->pluck('name','id'));
+
 
         $form->text('tags', __('Tags'))->default('测试666');
         $form->text('video_preview', __('Video preview'))->default('测试666');
@@ -170,6 +159,11 @@ class FileSharesController extends AdminController
 
         $form->decimal('ini_price', __('起步价'))->default(2.00);
         $form->decimal('cur_price', __('现价'))->default(2.00);
+
+        $form->hasMany('fileProperty','文件属性', function (Form\NestedForm $form){
+           $form->text('name','属性名')->rules('required');
+           $form->text('value', '属性值')->rules('required');
+        });
 
 //        $form->number('read_count', __('Read count'));
 //        $form->number('read_times', __('Read times'));

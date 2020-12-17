@@ -15,6 +15,15 @@
                 </div>
 
                 <div class="card-body" style="width: 80%">
+{{--                    <div class="properties-list-title">产品参数：</div>--}}
+                    <ul class="properties-list-body">
+                        @foreach($file_share->grouped_properties as $name => $values)
+                            <li>{{ $name }}：{{ join(' ', $values) }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="card-body" style="width: 80%">
                     <div class="media-heading">
                         <p class="text-left text-justify"><h1>{{ $file_share->st_path }}</h1></p>
                     </div>

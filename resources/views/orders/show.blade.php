@@ -45,6 +45,7 @@
                     </table>
                     <div class="order-bottom">
                         <div class="order-info">
+                            @if(!$order->coupon_code_id)
                             <!-- 优惠码开始 -->
                             <div class="form-group row">
                                 <form class="col" action="{{ route('orders.update_file_order', $order->id) }}" method="POST">
@@ -58,9 +59,9 @@
                                     <button type="submit" class="btn btn-danger" style="display: none;" id="btn-cancel-coupon">确认使用<br>该优惠</button>
                                     <button type="button" class="btn btn-success" id="btn-check-coupon">检验</button>
                                 </form>
-
                             </div>
                             <!-- 优惠码结束 -->
+                            @endif
                             <div class="line"><div class="line-label"><b>请注意：</b></div><div class="line-value">虚拟内容商品，购买后不支持退货、转让、退换<br>购买过程中，出现问题请联系小助理 <a href="#">小瑶</a></div></div>
                         </div>
                         <div class="order-summary text-right">
