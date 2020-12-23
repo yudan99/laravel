@@ -20,7 +20,7 @@ class AdminTablesSeeder extends Seeder
             [
                 [
                     "parent_id" => 0,
-                    "order" => 12,
+                    "order" => 13,
                     "title" => "Dashboard",
                     "icon" => "fa-bar-chart",
                     "uri" => "/",
@@ -28,7 +28,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 0,
-                    "order" => 13,
+                    "order" => 14,
                     "title" => "Admin",
                     "icon" => "fa-tasks",
                     "uri" => "",
@@ -36,7 +36,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 14,
+                    "order" => 15,
                     "title" => "Users",
                     "icon" => "fa-users",
                     "uri" => "auth/users",
@@ -44,7 +44,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 15,
+                    "order" => 16,
                     "title" => "Roles",
                     "icon" => "fa-user",
                     "uri" => "auth/roles",
@@ -52,7 +52,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 16,
+                    "order" => 17,
                     "title" => "Permission",
                     "icon" => "fa-ban",
                     "uri" => "auth/permissions",
@@ -60,7 +60,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 17,
+                    "order" => 18,
                     "title" => "Menu",
                     "icon" => "fa-bars",
                     "uri" => "auth/menu",
@@ -68,7 +68,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 2,
-                    "order" => 18,
+                    "order" => 19,
                     "title" => "Operation log",
                     "icon" => "fa-history",
                     "uri" => "auth/logs",
@@ -76,7 +76,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 18,
-                    "order" => 11,
+                    "order" => 12,
                     "title" => "领域分类管理",
                     "icon" => "fa-bars",
                     "uri" => "/fiels",
@@ -84,7 +84,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 18,
-                    "order" => 10,
+                    "order" => 11,
                     "title" => "文件分享管理（付费）",
                     "icon" => "fa-bars",
                     "uri" => "/file-shares",
@@ -92,7 +92,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 14,
-                    "order" => 5,
+                    "order" => 6,
                     "title" => "创建教程",
                     "icon" => "fa-bars",
                     "uri" => "/courses",
@@ -100,7 +100,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 14,
-                    "order" => 6,
+                    "order" => 7,
                     "title" => "教程版本管理",
                     "icon" => "fa-bars",
                     "uri" => "/editions",
@@ -108,7 +108,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 14,
-                    "order" => 7,
+                    "order" => 8,
                     "title" => "章节管理",
                     "icon" => "fa-bars",
                     "uri" => "/chapters",
@@ -116,7 +116,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 14,
-                    "order" => 8,
+                    "order" => 9,
                     "title" => "小节管理",
                     "icon" => "fa-bars",
                     "uri" => "/sections",
@@ -124,7 +124,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 0,
-                    "order" => 4,
+                    "order" => 5,
                     "title" => "教程",
                     "icon" => "fa-arrows",
                     "uri" => NULL,
@@ -156,10 +156,18 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "parent_id" => 0,
-                    "order" => 9,
+                    "order" => 10,
                     "title" => "文件",
                     "icon" => "fa-files-o",
                     "uri" => NULL,
+                    "permission" => NULL
+                ],
+                [
+                    "parent_id" => 17,
+                    "order" => 4,
+                    "title" => "优惠码管理",
+                    "icon" => "fa-bars",
+                    "uri" => "/coupon-codes",
                     "permission" => NULL
                 ]
             ]
