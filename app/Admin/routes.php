@@ -11,11 +11,11 @@ Route::group([
 ], function (Router $router) {
 
     $router->resource('file-shares', FileSharesController::class);
-    $router->resource('courses', CoursesController::class);
+//    $router->resource('courses', CoursesController::class);
     $router->resource('editions', EditionsController::class);
     $router->resource('chapters', ChaptersController::class);
-    $router->resource('sections', SectionsController::class);
-    $router->resource('orders', OrdersController::class);
+//    $router->resource('sections', SectionsController::class);
+//    $router->resource('orders', OrdersController::class);
     $router->resource('order-items', OrderItemsController::class);
     $router->resource('coupon-codes', CouponCodesController::class);
 
