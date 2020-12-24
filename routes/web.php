@@ -43,7 +43,7 @@ Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('pa
 Route::resource('users', 'UsersController');    //, ['only' => ['show', 'update', 'edit']]
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('orders', 'OrdersController', ['only' => ['show', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::resource('order_items', 'OrderItemsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 
 Route::resource('file_shares', 'FileSharesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
