@@ -52,13 +52,13 @@ Route::resource('fiels', 'FielsController', ['only' => ['index', 'show', 'create
 Route::resource('courses', 'CoursesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::resource('sections', 'SectionsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 
-Route::get('alipay', function() {
-    return app('alipay')->web([
-        'out_trade_no' => time(),
-        'total_amount' => '0.01',
-        'subject' => 'test subject - 测试',
-    ]);
-});
+//Route::get('alipay', function() {
+//    return app('alipay')->web([
+//        'out_trade_no' => time(),
+//        'total_amount' => '0.01',
+//        'subject' => 'test subject - 测试',
+//    ]);
+//});
 
 
 Route::resource('coupon_codes', 'CouponCodesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
