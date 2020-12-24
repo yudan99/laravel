@@ -21,7 +21,8 @@
         "mews/purifier": "~3.0",
         "overtrue/laravel-lang": "^4.1",
         "overtrue/laravel-socialite": "~2.0",
-        "yansongda/pay": "^2.10"
+        "yansongda/pay": "^2.10",
+        "fakerphp/faker": "^1.9.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.2",
