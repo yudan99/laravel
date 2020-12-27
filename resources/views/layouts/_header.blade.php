@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
+<div class="navbar-remarks">
+
+</div>
+<nav class="navbar navbar-expand-lg navbar-light navbar-static-topyao">
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand " href="{{ url('/') }}">

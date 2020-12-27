@@ -8,10 +8,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Fontawesome
-//@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-//@import '~@fortawesome/fontawesome-free/scss/regular';
-//@import '~@fortawesome/fontawesome-free/scss/solid';
-//@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 
 /* universal */
 
@@ -22,13 +22,38 @@ body {
 
 /* header */
 
+.navbar-remarks {
+    background-color: bj;
+    height: 33px;
+}
+
+.navbar-static-topyao {
+    height: 77px;
+    background-color: #ffffff;
+    box-shadow: 0px -7px 17px 3px rgba(245, 245, 245, 0.38);
+    margin-top: 0px;
+
+    // background-color: #fff;
+    // box-shadow: 0px -3px 11px 3px rgba(245, 245, 245, 0.38);
+    // background-color : -webkit-gradient (linear , 0  0 , 0  100% ,from ( #2777EC ) ,to ( #6AC1FC ) ) ;
+    // background-color : -moz-linear-gradient ( #2777EC ,  #6AC1FC ) ;
+    // background-color : -o-linear-gradient ( #2777EC ,  #6AC1FC ) ;
+    // background-color : linear-gradient ( top  center ,  #2777EC ,  #6AC1FC ) ;
+}
+
+.home-ad {
+    height: 257px;
+    background-color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .navbar-static-top {
     border-color: #e7e7e7;
     background-color: #fff;
     box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
     border-top: 4px solid #00b5ad;
     border-bottom: 1px solid #e8e8e8;
-    margin-bottom: 40px;
     margin-top: 0px;
 }
 

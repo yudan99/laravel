@@ -4,5 +4,7 @@
 
 
 @section('content')
-    <h1>这里是首页</h1>
+    <div class="home-ad">
+        <h1>home-ad</h1>
+    </div>
 @stop
