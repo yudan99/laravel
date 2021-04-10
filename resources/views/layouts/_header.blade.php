@@ -1,6 +1,6 @@
-<div class="navbar-remarks">
+{{--<div class="navbar-remarks">--}}
 
-</div>
+{{--</div>--}}
 <nav class="navbar navbar-expand-lg navbar-light navbar-static-topyao">
     <div class="container">
         <!-- Branding Image -->
